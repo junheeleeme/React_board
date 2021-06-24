@@ -9,7 +9,7 @@ const Footer = memo( () =>{
         <>
             <footer className="footer">
                 <div className="footer_wrap">
-                    footer
+                    <p className="footer_txt">Copyright ⓒ 2020 AD COMMUNICATION All Rights Reserved.</p>
                 </div>
             </footer>
         </>

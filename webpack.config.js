@@ -3,6 +3,7 @@ const HtmlWebpackPlugin =  require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { HotModuleReplacementPlugin } = require("webpack");
 
+
 module.exports = {
 
     name : 'React_web',
@@ -14,14 +15,14 @@ module.exports = {
         extensions : ['.js', '.jsx'],
     },
     entry : { //입력
-        app : ['./src/index'],
+        app : ['babel-polyfill', './src/index'],
     },
     module: {
         rules: [{
             test: /\.jsx?/,
             loader: 'babel-loader',
             options : {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
+                presets: ['@babel/preset-env', '@babel/preset-react']
             },
             exclude: ['/node_modules'],
         },
@@ -41,9 +42,8 @@ module.exports = {
                     }
                 },
             ],
-        }
-    ],
-    },
+        },        
+    ],},
     output : { //출력
         path: path.join(__dirname, 'dist'),
         filename : 'app.js',
@@ -57,7 +57,8 @@ module.exports = {
         hot: true,
         proxy: {
             '/api': 'http://localhost:9000'
-        }
+        },
+        historyApiFallback: true, //리액트 라우트 직접주소 입력해서 들어가는 법
     },
     plugins: [
         new HotModuleReplacementPlugin(),

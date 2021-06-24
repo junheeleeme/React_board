@@ -3,11 +3,9 @@ const ReactDom = require("react-dom");
 const { useState, useRef, memo, useEffect } = React;
 const { Route, NavLink } = require('react-router-dom');
 
-const Header = memo( () => {
+const Header = memo( ({menu}) => {
     const [title, setTitle] = useState('Title');
-    const [menu, setMenu] = useState(['home', 'about', 'skill', 'portfolio', 'contact']);
-
-
+    
     return(
             <header className="header">
                 <div className="header_wrap">
