@@ -59,7 +59,12 @@ const Board = (({location}) => {
             <Switch>
                 <Route path={'/board'} exact={true} render={()=> <List post={post}/>} />
                 <Route path={'/board/write'} exact={true} render={()=> <Form submit_Post={submit_Post}/>} />
-                <Route path={'/board/post/:id'} exact={true} component={Content} />
+                <Route path={'/board/post/:id'} exact={true} 
+                    render={(loc)=> {
+                        const post_no = loc.match.params.id-1;
+                        return <Content post={post[post_no]}/>
+                    }
+                } />
             </Switch>
         </div>
         

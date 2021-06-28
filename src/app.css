@@ -190,7 +190,73 @@ ul{
         
     }
 }
-/* ---------------- TopMenu ---------------- */
+/* ---------- Content ----------- */
+
+.cont-title{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 13px 10px;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+}
+
+.cont-title>span{
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.title-txt{
+    width: 76%;
+    vertical-align: middle;
+}
+
+.title-wrt, .title-date{
+    font-size: 14px;
+    width: 12%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cont-content{
+    width: 100%;
+    min-height: 500px;
+    padding: 15px;
+    background-color: #f7f7f7;
+}
+
+
+
+@media screen and (max-width: 767px ) {
+
+    .cont-title{
+        padding: 10px 5px;
+    }
+    
+    .title-txt{
+        font-size: 16px;
+        width: 70%;
+    }
+    
+    .title-wrt, .title-date{
+        text-align: center;
+    }
+
+    .title-wrt{
+        font-size: 10px;
+        width: 15%;
+    }
+    .title-date{
+        font-size: 10px;
+        width: 15%;
+    }
+
+}
+
+/* ---------- TopMenu ----------- */
 
 .topMenu{
     text-align: right;
