@@ -17,6 +17,15 @@ ul{
 }
 
 
+/* ---------------- Common ---------------- */
+
+.header_wrap, .main_wrap, .footer_wrap{
+    position: relative;
+    max-width: 1100px;
+    height: 100%;
+}
+
+
 /* ---------------- header ---------------- */
 
 .header{
@@ -25,16 +34,10 @@ ul{
     background-color: #867AE9;
 }
 
-.header_wrap, .main_wrap, .footer_wrap{
-    position: relative;
-    max-width: 1200px;
-    height: 100%;
-}
-
 .title{
     position: absolute;
     top: 50%;
-    left: 50px;
+    left: 30px;
     transform: translate(0, -50%);
     display: inline-block;
     font-size: 38px;;
@@ -76,7 +79,7 @@ ul{
 
 .menu>li:hover a::after { width: 100%; }
 
-/* ---------------- commmon ---------------- */
+/* ---------------- main ---------------- */
 
 .main{
     width: 100%;
@@ -86,39 +89,10 @@ ul{
 }
 
 .main_wrap{
-    max-width: 1200px;
     height: 100%;
     padding: 30px;
 }
 
-.topMenu{
-    text-align: right;
-    margin-bottom: 30px;
-}
-
-.topMenu>li{
-    display: inline-block;
-    text-align: center;
-    margin: 0 5px;
-}
-.topMenu>li>a{
-    display: inline-block;
-    padding: 7px 15px;
-    border: 1px solid #EDEDED;
-    border-radius: 3px;
-    background-color: #eeeeee;
-    transition: 0.2s ease;
-}
-.topMenu>li>a:hover{
-    background-color: #77ACF1;
-    color: #fff;
-}
-
-@media screen and (max-width: 767px){
-    .main_wrap{
-        padding: 10px;
-    }
-}
 
 /* ---------------- board ---------------- */
 
@@ -179,6 +153,7 @@ ul{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: middle;
     font-size: 16px;
 }
 
@@ -215,6 +190,38 @@ ul{
         
     }
 }
+/* ---------------- TopMenu ---------------- */
+
+.topMenu{
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.topMenu>li{
+    display: inline-block;
+    text-align: center;
+    margin: 0 5px;
+}
+.topMenu>li>a{
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid #EDEDED;
+    border-radius: 3px;
+    background-color: #eeeeee;
+    transition: 0.2s ease;
+}
+.topMenu>li>a:hover{
+    background-color: #77ACF1;
+    color: #fff;
+}
+
+@media screen and (max-width: 767px){
+    .main_wrap{
+        padding: 10px;
+    }
+}
+
+
 
 /* ---------------- footer ---------------- */
 .footer{
@@ -225,7 +232,6 @@ ul{
 
 .footer_wrap{
     position: relative;
-    max-width: 1200px;
     text-align: center;
     height: 100%;
 }

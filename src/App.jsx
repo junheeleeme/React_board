@@ -9,7 +9,7 @@ const { useEffect } = require("react");
 const App = () => {
 
 const [title, setTitle] = useState('메인');
-const [menu, setMenu] = useState(['home', 'board']);
+const [menu, setMenu] = useState(['login', 'join' , 'board']);
 
     return(
         

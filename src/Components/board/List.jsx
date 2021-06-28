@@ -1,41 +1,23 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 const { useState, memo } = require('react');
-const { Route, Switch, NavLink} = require('react-router-dom');
+const { Route } = require('react-router-dom');
+const ListItem = require("./ListItem");
+const Content = require("./Content");
 
-const List = memo( ({}) => {
+const List = (({post}) => {
 
-    const [post, setPost] = useState([
-        {
-            title : '첫 번째 포스트입니다.',
-            writter : '맥쭈니',
-            date : '2021-06-25'
-        },
-        {
-            title : '두 번째 포스트입니다.',
-            writter : '홍길동',
-            date : '2021-06-26'
-        }
-    ]);
-
-    console.log(post);
-
+    
     return(
-        <div className="list">
-            <ul className="post_list">
+            <div className="list">
+                <ul className="post_list">
                 {
-                    post.map( (post, idx) =>  
-                    <li>
-                        <NavLink to="/">
-                            <span className="post_title">{post.title}</span>
-                            <span className="post_writter">{post.writter}</span>
-                            <span className="post_date">{post.date}</span>
-                        </NavLink>
-                    </li>
-                    )
+                    post.map( (post, idx) => (
+                        <ListItem key={post.writter+idx} post={post}/>
+                    ))
                 }
-            </ul>
-        </div>
+                </ul>
+            </div>
     )
 })
 
