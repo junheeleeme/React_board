@@ -38,7 +38,7 @@ const Main =  withRouter(({location}) => {
             compo : Board
         },
         {
-            path : "/",
+            path : "o/",
             exact : false,
             compo : NotFound
         },
@@ -48,7 +48,6 @@ const Main =  withRouter(({location}) => {
     return(
         <div className="main">
             <div className="main_wrap">
-                현재 위치 : {location.pathname}
                 <Switch>
                     {
                         routes.map((route, idx) =>(
@@ -56,7 +55,7 @@ const Main =  withRouter(({location}) => {
                                 key={route.component+idx}
                                 path={route.path}
                                 exact={route.exact}
-                                render={(loc)=><route.compo {...loc}/>}
+                                render={(loc)=><route.compo {...loc} />}
                             />
                         ))
                     }

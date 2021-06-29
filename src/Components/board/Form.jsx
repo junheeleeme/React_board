@@ -1,10 +1,10 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 const { useState } = require('react');
-const { Link, useHistory } = require('react-router-dom');
+const { Link } = require('react-router-dom');
 
-const Form = ({submit_Post}) => {
-    const his = useHistory();
+const Form = ({createPost}) => {
+
     const [title, setTitle] = useState();
     const [content, setContent] = useState();
 
@@ -13,27 +13,34 @@ const Form = ({submit_Post}) => {
     }
 
     const changeCont = (e) => {
-        setContent(e.target.value);
+        setContent(e.target.value.replace(/(?:\r\n|\r|\n)/g,'<br/>'));
+
     }
 
     const submit = (e) =>{
         e.preventDefault();
+        setContent(content);
         const post = {
             title : title,
             content : content,
-            writter : '홍길동'
+            writer : '홍길동'
         }
-        submit_Post(post);
-        his.goBack(1);
+        console.log(content)
+        createPost(post);
+        
     }
+
 
     return(
     <form action="/" id="write_form">
 
         <input type="text" id="titleInput" placeholder="제목" onChange={changeTitle}/>
         <textarea name="content" id="content" cols="30" rows="10" onChange={changeCont}/>
-        <button type="submit" id="submitBtn" onClick={submit} onSubmit={submit}>작성하기</button>
-
+        
+            <button type="submit" id="submitBtn" onClick={submit}>
+                <Link to={'/board'}>작성하기</Link>
+            </button>
+        
     </form>
     
     )

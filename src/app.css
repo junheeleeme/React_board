@@ -83,24 +83,27 @@ ul{
 
 .main{
     width: 100%;
-    height: 800px;
+    height: calc(100vh - 130px);
     background-color: #fff;
     color: #000;
+    overflow: scroll;
 }
 
 .main_wrap{
-    height: 100%;
     padding: 30px;
 }
 
-
 /* ---------------- board ---------------- */
+
+.board{
+    height: 100%;
+}
 
 #titleInput{
     display: block;
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 10px;
     font-size: 20px;
     border-radius: 4px;
     border: 1px solid #444444;
@@ -110,8 +113,9 @@ ul{
 #content{
     display: block;
     width: 100%;
-    height: 500px;
+    height: calc(100% - 115px);
     padding: 10px;
+    margin-bottom: 10px;
     font-size: 18px;
     border-radius: 4px;
     border: 1px solid #444444;
@@ -122,8 +126,6 @@ ul{
 #submitBtn{
     display: block;
     width: 100%;
-    margin: 10px 0;
-    padding: 13px 0;
     font-size: 20px;
     border: none;
     border-radius: 4px;
@@ -131,6 +133,16 @@ ul{
     color: #000;
     cursor: pointer;
     transition: 0.3s ease;
+}
+#submitBtn>a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 13px 0;
+}
+
+.list{
+    padding-bottom: 20px;
 }
 
 .post_list{
@@ -154,16 +166,12 @@ ul{
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .post_title{
     padding-left: 10px;
-    width: 75%;
-}
-.post_writter{
-    width: 10%;
-    text-align: center;
+    width: 85%;
 }
 .post_date{
     width: 15%;
@@ -172,20 +180,17 @@ ul{
 }
 
 @media screen and (max-width: 767px ) {
-    .post_list>li>a{
-        font-size: 14px;
+    .post_list>li>a>span{
+        font-size: 13px;
     }
     .post_title{
-        padding-left: 5px;
-        width: 55%;
+        padding-left: 2px;
+        width: 75%;
     }
-    .post_writter{
-        width: 20%;
-        text-align: center;
-    }
+
     .post_date{
         width: 25%;
-        padding-right: 5px;
+        padding-right: 2px;
         text-align: right;
         
     }
@@ -196,7 +201,7 @@ ul{
     position: relative;
     display: block;
     width: 100%;
-    padding: 13px 10px;
+    padding: 15px;
     margin-bottom: 10px;
     background-color: #f7f7f7;
 }
@@ -210,20 +215,24 @@ ul{
 
 
 .title-txt{
-    width: 76%;
+    width: 85%;
     vertical-align: middle;
 }
 
-.title-wrt, .title-date{
+.title-date{
     font-size: 14px;
-    width: 12%;
-    text-align: center;
+    width: 15%;
+    text-align: right;
     vertical-align: middle;
 }
 
 .cont-content{
+    position: relative;
+    display: inline-block;        
+    white-space: normal;
+    overflow-wrap: break-word;
     width: 100%;
-    min-height: 500px;
+    min-height: calc(100% - 110px);
     padding: 15px;
     background-color: #f7f7f7;
 }
@@ -233,25 +242,18 @@ ul{
 @media screen and (max-width: 767px ) {
 
     .cont-title{
-        padding: 10px 5px;
+        padding: 15px;
     }
     
     .title-txt{
         font-size: 16px;
-        width: 70%;
-    }
-    
-    .title-wrt, .title-date{
-        text-align: center;
+        width: 80%;
     }
 
-    .title-wrt{
-        font-size: 10px;
-        width: 15%;
-    }
     .title-date{
         font-size: 10px;
-        width: 15%;
+        width: 20%;
+        text-align: center;
     }
 
 }
@@ -260,13 +262,13 @@ ul{
 
 .topMenu{
     text-align: right;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .topMenu>li{
     display: inline-block;
     text-align: center;
-    margin: 0 5px;
+    margin-left: 7px;
 }
 .topMenu>li>a{
     display: inline-block;
@@ -287,7 +289,11 @@ ul{
     }
 }
 
+/* ---------- write ----------- */
 
+#write_form{
+    height: calc(100% - 45px);
+}
 
 /* ---------------- footer ---------------- */
 .footer{

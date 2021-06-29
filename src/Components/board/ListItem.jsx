@@ -10,9 +10,8 @@ const ListItem = (({post}) => {
 
     return(
         <li>
-            <Link to={match.path+'/post/'+post.no}>
+            <Link to={match.path+'/post/' + post.no}>
                 <span className="post_title">{post.title}</span>
-                <span className="post_writter">{post.writter}</span>
                 <span className="post_date">{post.date}</span>
             </Link>
         </li>

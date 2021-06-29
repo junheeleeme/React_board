@@ -13,7 +13,7 @@ const List = (({post}) => {
                 <ul className="post_list">
                 {
                     post.map( (post, idx) => (
-                        <ListItem key={post.writter+idx} post={post}/>
+                        <ListItem key={post.title+idx} post={post}/>
                     ))
                 }
                 </ul>
