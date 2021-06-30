@@ -16,7 +16,7 @@ const TopMenu = (({no, deletePost}) => {
         <ul className="topMenu">
 
             <Switch>
-                <Route path={'/board'} exact={false}>
+                <Route path={'/board'} exact={true}>
                     <li><Link to={'/board/write'}>글쓰기</Link></li> 
                 </Route>
                 <Route path={'/board/post'} exact={false}>

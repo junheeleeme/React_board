@@ -6,9 +6,10 @@ const List = require("./board/List");
 const Content = require("./board/Content");
 const TopMenu = require("./board/TopMenu");
 const { Route, Switch, Redirect, Link, useRouteMatch } = require('react-router-dom');
+let no = 1;
 
 const Board = (({location}) => {
-        
+
     const [title, setTitle] =useState('title');
     const [post, setPost] = useState([
         {
@@ -26,10 +27,10 @@ const Board = (({location}) => {
     ]);
 
     const createPost = (postData) => {
-        
+        const total = post.length
         setPost([...post,
             {
-                no : post.length+1,
+                no : no++,
                 title : postData.title,
                 content : postData.content,
                 writer : postData.writer,
@@ -72,7 +73,9 @@ const Board = (({location}) => {
         
         <div className="board">
             <Route path={'/board'} exact={true} component={TopMenu} />
+            
             <Switch>
+                <Route path={'/board/write'} exact={true} component={TopMenu} />
                 <Route path={'/board/post/:id'} exact={false} render={(loc)=> {
                     const no = loc.match.params.id
                     return <TopMenu no={no} deletePost={deletePost}/>
