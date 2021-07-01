@@ -25,6 +25,17 @@ ul{
     height: 100%;
 }
 
+.sub_title{
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 767px){
+    .sub_title{
+        margin-bottom: 30px;
+    }
+}
+
 
 /* ---------------- header ---------------- */
 
@@ -78,6 +89,121 @@ ul{
 }
 
 .menu>li:hover a::after { width: 100%; }
+
+
+/* ---------------- JOIN ---------------- */
+
+.join{
+    position: relative;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.join_form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.success{
+    border: 1px solid #455eff !important;
+    background-color: #e9f0fd !important;
+}
+
+.fail{
+    border: 1px solid #FB3640 !important;
+    background-color: #ffcccc !important;
+}
+
+.join_form>input{
+    border: 1px  solid #DDDDDD;
+    border-radius: 3px;
+    display: block;
+    width: 270px;
+    height: 35px;
+    padding: 5px 7px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: 0;
+}
+
+.gender{
+    width: 270px;
+    padding: 5px;
+}
+.gender_wrap>span{
+    float: left;
+    font-size: 15px;
+}
+.gender_wrap{
+    text-align: right;
+    padding: 10px 0 20px 0;
+}
+.gender label{
+    display: inline-block;
+    margin-left: 20px;
+}
+.gender input[type="radio"]{
+    margin-right: 5px;
+}
+.gender_wrap label>span{
+    font-size: 14px;
+    vertical-align: top;
+}  
+
+.join_submit{
+    display: block;
+    width: 270px;
+    padding: 9px 0;  
+    background-color: #dddddd;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    outline: 0;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+    .join{
+        padding: 0px; 
+    }
+
+    .join_form>input{
+        width: 90%;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .gender{
+        width: 90%;
+        padding: 5px;
+    }
+    .gender_wrap>span{
+        float: left;
+        font-size: 17px;
+        vertical-align: middle;
+    }
+    .gender_wrap{
+        text-align: right;
+        padding: 10px 0 20px 0;
+    }
+    .gender label{
+        display: inline-block;
+        margin: 0 5px 0 25px;
+    }
+    .gender input[type="radio"]{
+        margin-right: 5px;
+    }
+    .gender_wrap label>span{
+        font-size: 14px;
+        vertical-align: top;
+    }  
+    .join_submit{
+        display: block;
+        width: 90%;
+    }
+}
 
 /* ---------------- main ---------------- */
 
@@ -285,7 +411,7 @@ ul{
 
 @media screen and (max-width: 767px){
     .main_wrap{
-        padding: 10px;
+        padding: 20px 10px;
     }
 }
 

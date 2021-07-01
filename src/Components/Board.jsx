@@ -6,7 +6,7 @@ const List = require("./board/List");
 const Content = require("./board/Content");
 const TopMenu = require("./board/TopMenu");
 const { Route, Switch, Redirect, Link, useRouteMatch } = require('react-router-dom');
-let no = 1;
+let no = 0;
 
 const Board = (({location}) => {
 

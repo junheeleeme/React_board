@@ -24,7 +24,7 @@ const TopMenu = (({no, deletePost}) => {
                 </Route>
             </Switch>
             <Route path={'/board/post'} exact={false}>
-                    <li><Link to={'/board/write'}>수정</Link></li> 
+                    <li><Link to={'/board/edit'}>수정</Link></li> 
             </Route>
             <Route path={'/board/post'} exact={false}>
                     <li onClick={onClick_Del}><Link to={'/board'}>삭제</Link></li>

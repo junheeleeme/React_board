@@ -1,6 +1,6 @@
 const React = require("react");
 const ReactDom = require("react-dom");
-const { BrowserRouter, Switch, Route, Link } = require('react-router-dom');
+const { BrowserRouter } = require('react-router-dom');
 const App = require("./App");
 const Style = require("./app.css");
 
