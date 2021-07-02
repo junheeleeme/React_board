@@ -5,7 +5,7 @@ const { useState } = require('react');
 const { Route, Switch, NavLink, useRouteMatch } = require('react-router-dom');
 
 const Content = (({post}) => {
-
+    console.log(post);
 
     return(
         <>

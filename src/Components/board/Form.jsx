@@ -25,7 +25,6 @@ const Form = ({createPost}) => {
             content : content,
             writer : '홍길동'
         }
-        console.log(content)
         createPost(post);
         
     }

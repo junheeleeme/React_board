@@ -6,31 +6,18 @@ const List = require("./board/List");
 const Content = require("./board/Content");
 const TopMenu = require("./board/TopMenu");
 const { Route, Switch, Redirect, Link, useRouteMatch } = require('react-router-dom');
-let no = 0;
+
 
 const Board = (({location}) => {
 
     const [title, setTitle] =useState('title');
-    const [post, setPost] = useState([
-        {
-            no : '1',
-            title : '첫 번째 포스트입니다.',
-            content : '1',
-            date : '2021-06-25'
-        },
-        {
-            no : '2',
-            title : '두 번째 포스트입니다.',
-            content : '2',
-            date : '2021-06-26'
-        }
-    ]);
+    const [post, setPost] = useState([]);
 
     const createPost = (postData) => {
-        const total = post.length
+
         setPost([...post,
             {
-                no : no++,
+                no : post.length++,
                 title : postData.title,
                 content : postData.content,
                 writer : postData.writer,
@@ -42,7 +29,7 @@ const Board = (({location}) => {
     const deletePost = (idx) => {
         const temp = [...post];
         temp.splice((idx-1), 1);
-
+ 
         setPost([...temp]);
     }
 
@@ -86,7 +73,7 @@ const Board = (({location}) => {
                 <Route path={'/board/write'} exact={true} render={()=> <Form createPost={createPost}/>} />
                 <Route path={'/board/post/:id'} exact={false} 
                     render={(loc)=> {
-                        const post_no = loc.match.params.id-1; //params에 따른 게시글 념겨주기
+                        const post_no = loc.match.params.id; //params에 따른 게시글 념겨주기
                         return <Content post={post[post_no]}/>
                     }
                 } />

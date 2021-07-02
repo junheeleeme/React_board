@@ -14,8 +14,8 @@ module.exports = {
         modules: ['node_modules'],
         extensions : ['.js', '.jsx'],
     },
-    entry : { //입력
-        app : ['babel-polyfill', './src/index'],
+    entry:{ // 합쳐질 파일 요소들 입력
+        app : ['./src/index.jsx'], 
     },
     module: {
         rules: [{
