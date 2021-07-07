@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, useParams } from "react-router-dom";
+import Topmenu from './Topmenu';
 
 const Content = ({post})=> {    
-    const params = useParams();
-    console.log(post);
+    
+
     return(
         <>
+            <Topmenu/>
             <h2 className="post-title">{post.title}</h2>
             <div className="post-content">
                 {post.body}

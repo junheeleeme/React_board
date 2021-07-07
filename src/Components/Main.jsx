@@ -10,7 +10,6 @@ const Main = () => {
     
     const [post, setPost] = useState([]);
     const [nowload, setNowload] = useState(true);
-    // const params = useParams();
 
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -41,6 +40,7 @@ const Main = () => {
             <>
             <article className="main">
                 <div className="main_wrap">
+                    <Link to="/list">목록</Link>
                     <ul className="post-list">  
                     <Switch>
                         <Route path="/list" exact>

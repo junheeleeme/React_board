@@ -26,7 +26,10 @@ a{
 .top-menu>li>a{
     display: inline-block;
     padding: 5px 15px;
-    border: 1px solid #000;
+    margin-left: 3px;
+    color: #293B5F;
+    background-color: #DBE6FD;
+    border-radius: 3px;
 }
 
 
@@ -63,7 +66,6 @@ a{
 .main_wrap{
     position: relative;
     max-width: 1080px;
-    height: 100%;
     padding: 30px;
 }
 
