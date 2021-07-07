@@ -1,24 +1,23 @@
-const React = require("react");
-const ReactDom = require("react-dom");
-const { useState, useRef } = React;
-const Header = require("./components/Header");
-const Main = require("./components/Main");
-const Footer = require("./components/Footer");
-const { useEffect } = require("react");
+import React from "react";
+import ReactDom from "react-dom";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+import List from "./components/List";
+import Load from "./components/Load";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
-
-const [title, setTitle] = useState('메인');
-const [menu, setMenu] = useState(['login', 'join' , 'board']);
-
+    
     return(
-        
-        <div className="wrap">
-            <Header menu={menu}/>
-            <Main menu={menu}/> 
-            <Footer/>
-        </div>
+        <>
+            <BrowserRouter>
+                <Header/>                
+                    <Main/>
+                <Footer/>
+            </BrowserRouter>
+        </>
     )
 }
 
-module.exports = App;
+export default App;

@@ -1,68 +1,64 @@
-const React = require("react");
-const ReactDom = require("react-dom");
-const Home = require("./Home");
-const Board = require("./Board");
-const Login = require("./Login");
-const Join = require("./user/Join");
-const NotFound = require("./NotFound");
-const { useState, memo, useEffect, useRouteMatch } = React;
-const { Route, Switch, Redirect, withRouter} = require('react-router-dom');
+import React, { useState, useEffect } from 'react';
+import Load from "./Load";
+import List from "./List";
+import Post from "./Post";
+import Topmenu from "./Topmenu";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import axios from "axios";
 
-const Main =  withRouter(({location}) => {
-    const [title, setTitle] = useState('Home');
+const Main = () => {
+    
+    const [post, setPost] = useState([]);
+    const [nowload, setNowload] = useState(true);
+    // const params = useParams();
 
-    const routes = [
-        {
-            path : "/",
-            exact : true,
-            compo : Home 
-        },
-        {
-            path : "/home",
-            exact : true,
-            compo : Home 
-        },
-        {
-            path : "/login",
-            exact : true,
-            compo : Login
-        },
-        {
-            path : "/join",
-            exact : true,
-            compo : Join
-        },
-        {
-            path : "/board",
-            exact : false,
-            compo : Board
-        },
-        {
-            path : "o/",
-            exact : false,
-            compo : NotFound
-        },
-    ];
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((res) => {
+            setPost(res.data);
+            setNowload(false);
+        }).catch((err) => {
+            console.log(err);
+            setNowload(true);
+        })
+    }, [])
+    
 
+    if(nowload){
+        return(
+            <>
+                <article className="main">
+                    <div className="main_wrap">
+                        <ul className="post-list">  
+                            <Load/>
+                        </ul>
+                    </div>
+                </article>
+            </>
+        )
+    }else{
+        return(
+            <>
+            <article className="main">
+                <div className="main_wrap">
+                    <ul className="post-list">  
+                    <Switch>
+                        <Route path="/list" exact>
+                            <Topmenu/>
+                            <List post={post}/>
+                        </Route>
+                        <Route path="/post/:no" exact={false} render={(loc)=>{
+                            const params = parseInt(loc.match.params.no);
+                            console.log(params)
+                            return <Post post={post[params-1]}/>
+                        }}/>
+                    </Switch>                        
+                    </ul>
+                </div>
+            </article>
+        </>
+        )
+    }
+}
 
-    return(
-        <div className="main">
-            <div className="main_wrap">
-                <Switch>
-                    {
-                        routes.map((route, idx) =>(
-                            <Route
-                                key={route.component+idx}
-                                path={route.path}
-                                exact={route.exact}
-                                render={(loc)=><route.compo {...loc} />}
-                            />
-                        ))
-                    }
-                </Switch>
-            </div>
-        </div>
-    )
-})
-
-module.exports = Main;
+export default Main;

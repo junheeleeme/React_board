@@ -1,15 +1,9 @@
-const React = require("react");
-const ReactDom = require("react-dom");
-const { BrowserRouter } = require('react-router-dom');
-const App = require("./App");
-const Style = require("./app.css");
+import React from "react";
+import ReactDom from "react-dom";
+import App from  "./App";
+import style from "./app.css" ;
 
-ReactDom.render(
-    <BrowserRouter>
-        <App/>
-    </BrowserRouter>,
-    document.querySelector("#root")
-);
+ReactDom.render(<App/>, document.querySelector("#root"));
 
 if(module.hot){
     module.hot.accept();

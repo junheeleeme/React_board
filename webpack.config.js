@@ -1,15 +1,12 @@
 const path = require("path");
-const HtmlWebpackPlugin =  require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require("webpack");
-
 
 module.exports = {
 
-    name : 'React_web',
-    mode : 'development', //production
-    devtool : 'eval',
-
+    name : 'React-webpack-setting', // 웹팩 설정 이름
+    mode : 'development', //실서비스 : Production
+    devtool : 'eval', //  <-- 여기까지는 생략가능
     resolve: {
         modules: ['node_modules'],
         extensions : ['.js', '.jsx'],
@@ -49,7 +46,6 @@ module.exports = {
         filename : 'app.js',
         publicPath: '/'
     },
-
     devServer: {
         contentBase: path.join(__dirname, '/'),
         host: 'localhost',
