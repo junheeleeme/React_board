@@ -19,6 +19,18 @@ app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname), './dist/index.html');
 });
 
+app.get('/post/list', (req, res)=>{
+
+    Post.find({},'title').then((post)=>{
+        console.log(post);
+        res.send(post);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(400).send('DB Errer');
+    });
+
+});
+
 
 app.post('/post/write/new', (req, res)=>{
 
@@ -35,7 +47,8 @@ app.post('/post/write/new', (req, res)=>{
         res.status(400).send('Failed Insert DB');
     });
 
-})
+});
+
 
 
 

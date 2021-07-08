@@ -13,8 +13,9 @@ const Main = () => {
     const [nowload, setNowload] = useState(true);
 
     useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('/post/list')
         .then((res) => {
+            console.log(res.data)
             setPost(res.data);
             setNowload(false);
         }).catch((err) => {

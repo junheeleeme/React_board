@@ -12,7 +12,7 @@ const List = ({post}) => {
                     <li key={post.id+idx}>
                         <Link to={'/post/'+ post.id} >
                             <span className="list-no">
-                                {post.id}
+                            
                             </span>
                             <span className="list-title">
                                 {post.title}
