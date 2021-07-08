@@ -14,14 +14,14 @@ const Main = () => {
 
     useEffect(()=>{
         axios.get('/post/list')
-        .then((res) => {
-            console.log(res.data)
-            setPost(res.data);
-            setNowload(false);
-        }).catch((err) => {
-            console.log(err);
-            setNowload(true);
-        })
+            .then((res) => {
+                //console.log(res.data)
+                setPost(res.data);
+                setNowload(false);
+            }).catch((err) => {
+                console.log(err);
+                setNowload(true);
+            });
     }, [])
     
 
@@ -63,11 +63,9 @@ const Main = () => {
                         <Route path="/post/write" exact={true}> 
                             <Write/>
                         </Route>
-                        <Route path="/post/:no" exact={true} render={(loc)=>{
-                            const params = parseInt(loc.match.params.no);
-                            console.log(params)
-                            return <Post post={post[params-1]}/>
-                        }}/>
+                        <Route path="/post" exact={false}>
+                            <Post/>
+                        </Route>
                     </Switch>                        
                     
                 </div>

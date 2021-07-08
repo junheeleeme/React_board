@@ -23,12 +23,26 @@ app.get('/post/list', (req, res)=>{
 
     Post.find({},'title').then((post)=>{
         console.log(post);
-        res.send(post);
+        res.status(200).send(post);
     }).catch((err)=>{
         console.log(err);
         res.sendStatus(400).send('DB Errer');
     });
 
+});
+
+app.get('/post', (req, res)=>{
+
+    const no = req.query.no;
+    
+    Post.findOne({_id : no}).then((post)=>{
+        console.log(post);
+        res.status(200).send(post);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(400).send('DB Errer');
+    });
+    
 });
 
 
@@ -48,9 +62,6 @@ app.post('/post/write/new', (req, res)=>{
     });
 
 });
-
-
-
 
 app.listen(port, (err)=>{
     if(err){
