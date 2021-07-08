@@ -18,7 +18,6 @@ a{
     width: 100%;
     padding-left: 0;
     list-style: none;
-    margin-bottom: 15px;
 }
 .top-menu>li{
     float: right;
@@ -66,9 +65,11 @@ a{
 .main_wrap{
     position: relative;
     max-width: 1080px;
+    width: 100%;
     padding: 30px;
+    height: 100%;
 }
-
+/* ---------- List ---------- */
 .post-list{
     display: inline-block;
     width: 100%;
@@ -104,6 +105,8 @@ a{
     white-space: nowrap;
 }
 
+/* ---------- Post ---------- */
+
 .post-title, .post-content{
     background-color: #f2f2f2;
     border-radius: 5px;
@@ -119,10 +122,45 @@ a{
 
 .post-content{
     display: inline-block;
-    height: calc(100% - 85px);
-    margin: 10px 0;
+    height: calc(100% - 100px);
     padding: 15px;
+    margin-bottom: 30px;
 }
+
+#title-input, #body-input, #writeBtn{
+    display: block;
+    width: 100%;
+    resize: none;
+    outline: 0;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    font-size: 17px;
+    padding: 7px;
+}
+#title-input{
+    margin: 10px 0;
+}
+#body-input{
+    height: calc(100% - 135px);
+    margin-bottom: 10px;
+}
+
+#writeBtn{
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+}
+
+/* ---------- Write ---------- */
+
+#write-form{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+
 
 
 /* --------------- Footer --------------- */

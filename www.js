@@ -1,30 +1,45 @@
 const express = require("express");
 const app = express();
+const path = require("path")
 const mongoose = require("mongoose");
 require("dotenv").config({path: 'variables.env'});
 const mongo_uri = process.env.MONGODB_URI;
+const port = process.env.PORT;
 const Post = require("./models/Post");
+const bodyParser = require('body-parser');                                                                     
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+
+app.use(express.static(path.join(__dirname, './dist')));
+//정적 파일 제공을 위한 선언
 
 
 app.get('/', (req, res)=>{
-    const newPost = new Post();
-    newPost.no = 1;
-    newPost.title = "첫 번째 포스팅입니다."
-    newPost.content = "첫 번째 포스팅 내용입니다.!@#!@#@!#"
-    newPost.save().then((post)=>{
-        console.log(post);
-        res.json({
-            message: 'Post Created Success!'
-        })
-    }).catch((err)=>{
-        res.json({
-            message: 'Post Created fail!'
-        })
-    })
+    res.sendFile(path.join(__dirname), './dist/index.html');
 });
 
 
-app.listen(3000, (err)=>{
+app.post('/post/write/new', (req, res)=>{
+
+    const newPost = new Post();
+
+    newPost.title = req.body.title;
+    newPost.content = req.body.body;
+
+    newPost.save().then((post)=>{
+        res.status(200).send('OK');
+        console.log("Input Data");
+        console.log(post);
+    }).catch((err)=>{
+        res.status(400).send('Failed Insert DB');
+    });
+
+})
+
+
+
+app.listen(port, (err)=>{
     if(err){
         console.log(err)
     }else{
@@ -35,5 +50,9 @@ app.listen(3000, (err)=>{
                 console.log("Connected to DB success!");
             }
         })
-  }
+    }
 })
+
+
+
+// POST 데이터 삽입

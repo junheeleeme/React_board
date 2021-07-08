@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Load from "./Load";
-import List from "./List";
-import Post from "./Post";
+import List from "./board/List";
+import Post from "./board/Post";
+import Write from "./board/Write";
 import Topmenu from "./Topmenu";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import axios from "axios";
@@ -40,20 +41,34 @@ const Main = () => {
             <>
             <article className="main">
                 <div className="main_wrap">
-                    <Link to="/list">목록</Link>
-                    <ul className="post-list">  
+                    <Route path="/" exact>
+                        <Link to="/list">게시글 목록</Link>
+                    </Route>
+                    <Switch>
+                        <Route path="/list" exact={false}>
+                            <Topmenu/>
+                        </Route>
+                        <Route path="/post" exact={false}>
+                            <Topmenu/>
+                        </Route>
+                    </Switch>
+                    
                     <Switch>
                         <Route path="/list" exact>
-                            <Topmenu/>
-                            <List post={post}/>
+                            <ul className="post-list">  
+                                <List post={post}/>
+                            </ul>
                         </Route>
-                        <Route path="/post/:no" exact={false} render={(loc)=>{
+                        <Route path="/post/write" exact={true}> 
+                            <Write/>
+                        </Route>
+                        <Route path="/post/:no" exact={true} render={(loc)=>{
                             const params = parseInt(loc.match.params.no);
                             console.log(params)
                             return <Post post={post[params-1]}/>
                         }}/>
                     </Switch>                        
-                    </ul>
+                    
                 </div>
             </article>
         </>

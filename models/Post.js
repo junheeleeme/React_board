@@ -3,10 +3,6 @@ const { SingleEntryPlugin } = require("webpack");
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-        no : {
-            type : String,
-            required : true,
-        },
         title : {
             type : String,
         },
