@@ -23,9 +23,8 @@ const Main = () => {
                 setNowload(true);
             });
     }, [])
-    
 
-    if(nowload){
+    if(nowload){ //로딩중
         return(
             <>
                 <article className="main">
@@ -37,7 +36,7 @@ const Main = () => {
                 </article>
             </>
         )
-    }else{
+    }else{      //로딩완료
         return(
             <>
             <article className="main">

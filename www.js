@@ -51,7 +51,7 @@ app.post('/post/write/new', (req, res)=>{
     const newPost = new Post();
 
     newPost.title = req.body.title;
-    newPost.content = req.body.body;
+    newPost.body = req.body.body;
 
     newPost.save().then((post)=>{
         res.status(200).send('OK');

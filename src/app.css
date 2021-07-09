@@ -15,6 +15,7 @@ a{
 
 .top-menu{
     display: inline-block;
+    height: 30px;
     width: 100%;
     padding-left: 0;
     list-style: none;
@@ -29,6 +30,12 @@ a{
     color: #293B5F;
     background-color: #DBE6FD;
     border-radius: 3px;
+}
+
+@media screen and (max-width: 767px) {
+    .top-menu{
+        margin-bottom: 10px;
+    }
 }
 
 
@@ -69,6 +76,13 @@ a{
     padding: 30px;
     height: 100%;
 }
+
+@media screen and (max-width: 767px) {
+    .main_wrap{
+        padding: 10px;
+    }
+}
+
 /* ---------- List ---------- */
 .post-list{
     display: inline-block;
@@ -92,12 +106,30 @@ a{
 .post-list>li>a>span{
     display: inline-block;
     vertical-align: middle;
+    font-size: 16px;
 }
 .list-title{
-    width: 100%;
+    width: 80%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.list-date{ 
+    width: 20%;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .post-list>li>a>span{     
+        font-size: 15px;
+    }
+    .list-title{
+        width: 70%;
+    }
+    .list-date{
+        width: 30%;
+    }
 }
 
 /* ---------- Post ---------- */
@@ -135,17 +167,30 @@ a{
     padding: 7px;
 }
 #title-input{
-    margin: 10px 0;
+    height: 35px;
+    margin-bottom: 10px;
 }
 #body-input{
+    display: inline-block;
     height: calc(100% - 135px);
-    margin-bottom: 10px;
 }
 
 #writeBtn{
+    height: 35px;
+    margin-top: 10px;
     cursor: pointer;
     border: 1px solid #d9d9d9;
     background-color: #d9d9d9;
+}
+
+@media screen and (max-width: 767px) {
+    .post-content{
+        height: calc(100% - 105px);
+        margin-bottom: 0;
+    }
+    #body-input{
+        height: calc(100% - 150px);
+    }
 }
 
 /* ---------- Write ---------- */

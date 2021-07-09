@@ -13,6 +13,9 @@ const List = ({post}) => {
                             <span className="list-title">
                                 {post.title}
                             </span>
+                            <span className="list-date">
+                                {'2021-07-09'}
+                            </span>
                         </Link>
                     </li>
                 )
