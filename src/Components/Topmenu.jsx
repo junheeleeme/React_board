@@ -6,7 +6,8 @@ const Topmenu = () => {
     return(
         <>
             <ul className="top-menu">
-                <li><Link to="/list">목록</Link></li>
+                <li><Link to={{pathname : "/list",
+                                state : 'render'}}>목록</Link></li>
                 <Switch>
                     <Route path="/list">
                         <li><Link to="/post/write">글쓰기</Link></li>

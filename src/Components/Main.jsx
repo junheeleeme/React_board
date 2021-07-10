@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Load from "./Load";
 import List from "./board/List";
 import Post from "./board/Post";
@@ -7,12 +7,15 @@ import Topmenu from "./Topmenu";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import axios from "axios";
 
-const Main = () => {
+
+const Main = (() => {
     
     const [post, setPost] = useState([]);
     const [nowload, setNowload] = useState(true);
-
+    
     useEffect(()=>{
+
+        console.log("First Rendering");
         axios.get('/post/list')
             .then((res) => {
                 //console.log(res.data)
@@ -22,8 +25,24 @@ const Main = () => {
                 console.log(err);
                 setNowload(true);
             });
-    }, [])
 
+    }, []);
+
+    const listUpdate = () =>{
+        setNowload(true);
+        console.log("Second Rendering");
+        axios.get('/post/list')
+            .then((res) => {
+                //console.log(res.data)
+                setPost(res.data);
+                setNowload(false);
+            }).catch((err) => {
+                console.log(err);
+                setNowload(true);
+            });
+    }
+
+    
     if(nowload){ //로딩중
         return(
             <>
@@ -60,7 +79,7 @@ const Main = () => {
                             </ul>
                         </Route>
                         <Route path="/post/write" exact={true}> 
-                            <Write/>
+                            <Write listUpdate={listUpdate}/>
                         </Route>
                         <Route path="/post" exact={false}>
                             <Post/>
@@ -72,6 +91,6 @@ const Main = () => {
         </>
         )
     }
-}
+})
 
 export default Main;
