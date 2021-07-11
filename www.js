@@ -63,6 +63,21 @@ app.post('/post/write/new', (req, res)=>{
 
 });
 
+app.delete('/post/delete?:id', (req, res)=>{
+    
+    const no = req.query.no;
+
+    Post.deleteOne({_id : no}).then((post)=>{
+        console.log(post);
+        res.status(200).send('Delete!');
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(400).send('DB Errer');
+    });
+    
+});
+
+
 app.listen(port, (err)=>{
     if(err){
         console.log(err)
