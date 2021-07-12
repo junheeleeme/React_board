@@ -17,6 +17,7 @@ a{
     display: inline-block;
     height: 30px;
     width: 100%;
+    margin-bottom: 10px;
     padding-left: 0;
     list-style: none;
 }
@@ -87,7 +88,7 @@ a{
 .post-list{
     display: inline-block;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
     list-style: none;
     padding-left: 0;
 }
@@ -98,7 +99,7 @@ a{
 
 .post-list>li>a{
     display: inline-block;
-    padding: 10px;
+    padding: 10px 5px;
     width: 100%;
     height: 100%;
 }
@@ -109,15 +110,15 @@ a{
     font-size: 16px;
 }
 .list-title{
-    width: 80%;
+    width: 85%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
 
 .list-date{ 
-    width: 20%;
-    text-align: center;
+    width: 15%;
+    text-align: right;
 }
 
 @media screen and (max-width: 767px) {
@@ -139,6 +140,7 @@ a{
     border-radius: 5px;
 }
 .post-title{
+    height: 40px;
     font-size: 18px;
     margin: 10px 0;
     padding: 10px;
@@ -150,7 +152,7 @@ a{
 .post-content{
     display: inline-block;
     width: 100%;
-    height: calc(100% - 100px);
+    height: calc(100% - 110px);
     padding: 15px;
     margin-bottom: 30px;
     line-height: 1.5;

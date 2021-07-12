@@ -7,10 +7,9 @@ const Write = ({listUpdate}) => {
     const his = useHistory();
     const titleInput = useRef(null);
     const bodyInput = useRef(null);
-    const test = useRef(null);
-
     const [title, setTitle] = useState();
     const [body, setBody] = useState();
+
 
     const changeInput = ((e) =>{
         if( e.target.id === "title-input"){
@@ -29,22 +28,16 @@ const Write = ({listUpdate}) => {
             const title = titleInput.current.value;
             const body = bodyInput.current.value;
 
-            axios({
-                method : 'post',
-                url : '/post/write/new',
-                data : {
+            axios.post('/post/write/new', {
                     title : title,
                     body : body
-                }
             }).then((res)=>{
                 if(res.status === 200){
-                    console.log("success!");
                     listUpdate();
                     his.replace('/list');
                 }
             }).catch(err=>{
                 console.log(err);
-                alert(err);
             });
         }
         

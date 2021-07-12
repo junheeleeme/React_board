@@ -21,8 +21,11 @@ app.get('/', (req, res)=>{
 
 app.get('/post/list', (req, res)=>{
 
-    Post.find({},'title').then((post)=>{
-        console.log(post);
+    
+
+    Post.find({}, {"title" : true, "createdAt" : true}).then((post)=>{
+
+        // const date = post._id.getTimestamp();
         res.status(200).send(post);
     }).catch((err)=>{
         console.log(err);
@@ -36,7 +39,7 @@ app.get('/post', (req, res)=>{
     const no = req.query.no;
     
     Post.findOne({_id : no}).then((post)=>{
-        console.log(post);
+
         res.status(200).send(post);
     }).catch((err)=>{
         console.log(err);

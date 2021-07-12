@@ -15,10 +15,8 @@ const Main = (() => {
     
     useEffect(()=>{
 
-        console.log("First Rendering");
         axios.get('/post/list')
             .then((res) => {
-                //console.log(res.data)
                 setPost(res.data);
                 setNowload(false);
             }).catch((err) => {
@@ -33,7 +31,7 @@ const Main = (() => {
         console.log("Second Rendering");
         axios.get('/post/list')
             .then((res) => {
-                //console.log(res.data)
+                //console.log(res)
                 setPost(res.data);
                 setNowload(false);
             }).catch((err) => {
@@ -68,7 +66,7 @@ const Main = (() => {
                             <Topmenu/>
                         </Route>
                         <Route path="/post" exact={false}>
-                            <Topmenu/>
+                            <Topmenu listUpdate={listUpdate}/>
                         </Route>
                     </Switch>
                     

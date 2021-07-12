@@ -4,6 +4,8 @@ import { Route, Switch, Link } from "react-router-dom";
 
 const List = ({post}) => {
 
+    console.log(post);
+
     return(
         <> 
             {
@@ -14,7 +16,7 @@ const List = ({post}) => {
                                 {post.title}
                             </span>
                             <span className="list-date">
-                                {'2021-07-09'}
+                                {post.createdAt.substr(0, 10)}
                             </span>
                         </Link>
                     </li>
