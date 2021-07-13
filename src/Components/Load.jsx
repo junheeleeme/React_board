@@ -6,9 +6,11 @@ const Load = () => {
     return(
         
         <>
-        <h2>로딩 중...</h2>
+            <div className="loader">
+                
+            </div>
         </>
     )
 }
 
-export default Load;
+export default Load;    

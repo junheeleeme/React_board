@@ -7,8 +7,9 @@ import axios from 'axios';
 const Content = ()=> {    
     const { search } = useLocation();
     const { no } = queryString.parse(search);
-    const body = useRef(null);
     const [title, setTitle] = useState();
+    const body = useRef(null);
+    const [date, setDate] = useState();
 
     useEffect(()=>{
 
@@ -18,6 +19,7 @@ const Content = ()=> {
             }
         }).then((res)=>{
             setTitle(res.data.title);
+            setDate(res.data.createdAt.substr(0, 10));
             body.current.innerText = res.data.body; 
         }).catch((err)=>{
             console.log(err);
@@ -28,7 +30,11 @@ const Content = ()=> {
 
     return(
         <>
-            <h2 className="post-title">{title}</h2>
+            <div className="post-title-wrap">
+                <h2 className="post-title">{title}</h2>
+                <p className="post-date">{date}</p>
+            </div>
+            
             <div ref={body} className="post-content">
             </div>
         

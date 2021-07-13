@@ -32,7 +32,7 @@ const Topmenu = ({listUpdate}) => {
     return(
         <>
             <ul className="top-menu">
-                                    
+
                 <Switch>
                     <Route path="/list">
                         <li><Link to="/post/write">글쓰기</Link></li>
