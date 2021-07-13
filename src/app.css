@@ -32,6 +32,11 @@ a{
     background-color: #DBE6FD;
     border-radius: 3px;
     font-size: 17px;
+    transition: 0.2s ease;
+}
+
+.top-menu>li>a:hover{
+    background-color: #EEEEEE;
 }
 
 @media screen and (max-width: 767px) {
@@ -49,7 +54,7 @@ a{
     background-color: #77ACF1;
 }
 
-.header_wrap{
+.header-wrap{
     position: relative;
     max-width: 1080px;
     height: 100%;
@@ -71,7 +76,7 @@ a{
     overflow-y: scroll;
 }
 
-.main_wrap{
+.main-wrap{
     position: relative;
     max-width: 1080px;
     width: 100%;
@@ -80,7 +85,7 @@ a{
 }
 
 @media screen and (max-width: 767px) {
-    .main_wrap{
+    .main-wrap{
         padding: 10px;
     }
 }
@@ -242,13 +247,26 @@ a{
 .footer{
     width: 100%;
     height: 60px;
-    background-color: #A2DBFA;
+    /*background-color: #A2DBFA;*/
+    background-color: #EEEEEE;
 }
 
-.footer_wrap{
+.footer-wrap{
     position: relative;
     max-width: 1080px;
     height: 100%;
+}
+
+.footerTxt{
+    display: inline-block;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    color: #B2B1B9;
+    
 }
 
 
@@ -258,8 +276,8 @@ a{
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background: url('./images/loading.png') no-repeat center / 100%;
     animation: loading-effect 1.75s 0s linear infinite;
@@ -272,4 +290,13 @@ a{
     to{
         transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+
+@media screen and (max-width: 767px){
+
+    .loader{
+        width: 100px;
+        height: 100px;
+    }
+
 }

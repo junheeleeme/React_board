@@ -6,7 +6,7 @@ const Header = () => {
     return(
         <>
             <div className="header">
-                <div className="header_wrap">
+                <div className="header-wrap">
                     <h1 className="title"><Link to ="/">React</Link></h1>
                 </div>
             </div>

@@ -45,7 +45,7 @@ const Main = (() => {
         return(
             <>
                 <article className="main">
-                    <div className="main_wrap">
+                    <div className="main-wrap">
                         <ul className="post-list">  
                             <Load/>
                         </ul>
@@ -57,7 +57,7 @@ const Main = (() => {
         return(
             <>
             <article className="main">
-                <div className="main_wrap">
+                <div className="main-wrap">
                     <Route path="/" exact>
                         <Link to="/list">게시글 목록</Link>
                     </Route>
