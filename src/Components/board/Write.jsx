@@ -25,9 +25,6 @@ const Write = ({listUpdate}) => {
         
         if(title !== '' || body !== ''){
             
-            const title = title;
-            const body = body;
-
             axios.post('/post/write/new', {
                     title : title,
                     body : body

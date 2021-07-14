@@ -7,7 +7,9 @@ const Header = () => {
         <>
             <div className="header">
                 <div className="header-wrap">
-                    <h1 className="title"><Link to ="/">React</Link></h1>
+                    <h1 className="title">
+                        <Link to ="/">Simple React Board</Link>
+                    </h1>
                 </div>
             </div>
         </>

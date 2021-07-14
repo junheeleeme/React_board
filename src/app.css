@@ -3,6 +3,7 @@
 *{
     box-sizing: border-box;
     margin: 0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 a{
@@ -57,11 +58,29 @@ a{
 }
 
 .title{
+    display: inline-block;
     position: absolute;
     top: 50%;
     left: 20px;
     transform: translate(0, -50%);
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.title>a{
     display: inline-block;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+    .title{ 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        font-size: 20px;
+    }
 }
 
 
@@ -80,13 +99,100 @@ a{
     padding: 30px;
 }
 
+.goBoardBtn{
+    position: absolute;
+    top: 65%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;   
+    width: 200px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 0;
+    background-color: #EEEEEE;
+    border-radius: 5px;    
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.goBoardBtn:hover{
+    background: #DBE6FD;
+}
+
+.boardImg{
+    display: block;
+    width: 70px;
+    height: 70px;
+    font-size: 17px;
+}
+
+.goBoardTxt{
+    margin-top: 10px;
+}
+
+
 @media screen and (max-width: 767px) {
     .main-wrap{
         padding: 10px;
     }
+    .goBoardBtn{
+        top: 75%;
+    }
 }
 
+/* ---------- Intro ---------- */
+
+.intro-wrap{
+    position: absolute;
+    top: 15%; left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    user-select: none;
+}
+
+.img-wrap{
+    display: inline-block;
+    width: 100%;
+}
+
+.introTxt{
+    font-size: 22px; 
+    margin-bottom: 30px;
+}
+
+.img-wrap>img{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.reactIcon{ width: 120px; height: 120px; }
+.mongoIcon{ width: 120px; height: 150px; }
+.nodeIcon{  width: 170px; height: 100px; }
+
+.img-wrap>span{
+    vertical-align: middle;
+    margin: 0 40px;
+    font-size: 40px;
+    color: #444444;
+    font-weight: 100;
+}
+
+@media screen and (max-width: 767px) {
+    .introTxt{ font-size: 18px; }
+    .img-wrap>img{ transform: scale(0.7); }
+    .img-wrap>span{ margin:0; font-size: 30px; }
+}
+
+@media screen and (max-width: 524px) {
+    .introTxt{ font-size: 18px; }
+    .img-wrap>img{ transform: scale(0.5); }
+    .img-wrap>span{ margin: 0 -25px; font-size: 25px; }
+}
+
+
 /* ---------- List ---------- */
+
 .post-list{
     display: inline-block;
     width: 100%;
@@ -138,21 +244,27 @@ a{
 /* ---------- Post ---------- */
 
 .post-title-wrap, .post-content{
+    position: relative;
     background-color: #f2f2f2;
     border-radius: 5px;
 }
 
 .post-title-wrap{
     position: relative;
-    height: 40px;
+    height: 50px;
     margin: 10px 0;
     padding: 10px;
 }
 
 .post-title{
     display: inline-block;
+    position: absolute;
+    top: 48%; left: 0;
+    transform: translate(0, -50%);
     width: 85%;
+    padding-left: 10px;
     font-size: 18px;
+    vertical-align: middle;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -160,15 +272,14 @@ a{
 
 .post-date{
     position: absolute;
-    top: 50%;
-    right: 0;
+    top: 48%; right: 0;
     transform: translate(0, -50%);
     width: 15%;
     font-size: 14px;
     text-align: right;
     padding: 0 15px;
+    vertical-align: middle;
 }
-
 
 .post-content{
     display: inline-block;
@@ -181,8 +292,12 @@ a{
 
 
 @media screen and (max-width: 767px) {
+    .post-title-wrap{
+        padding: 5px;
+    }
     .post-content{
-        height: calc(100% - 105px);
+        height: calc(100% - 115px);
+        padding: 10px;
         margin-bottom: 0;
     }
     .post-title{
@@ -192,7 +307,7 @@ a{
     .post-date{
         width: 25%;
         font-size: 12px;
-        padding: 0 10px;
+        padding: 0 5px 0 0;
     }
 }
 
@@ -202,7 +317,7 @@ a{
     position: relative;
     display: inline-block;
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 60px);
 }
 
 #title-input, #body-input, #writeBtn{
@@ -221,12 +336,14 @@ a{
 }
 #body-input{
     display: inline-block;
-    height: calc(100% - 92px);
+    height: calc(100% - 100px);
 }
-
 #writeBtn{
-    height: 35px;
+    font-size: 17px;
+    height: 45px;
     margin-top: 10px;
+    padding: 3px;
+    vertical-align: middle;
     cursor: pointer;
     border: 1px solid #d9d9d9;
     background-color: #d9d9d9;
@@ -235,7 +352,7 @@ a{
 @media screen and (max-width: 767px){
 
     #write-form{
-        height: calc(100% - 100px);
+        height: calc(100% - 60px);
     }
 }
 

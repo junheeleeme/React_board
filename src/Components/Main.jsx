@@ -4,7 +4,9 @@ import List from "./board/List";
 import Post from "./board/Post";
 import Write from "./board/Write";
 import Edit from "./board/Edit";
+import Intro from "./Intro";
 import Topmenu from "./Topmenu";
+import boardImg from "../images/board.png";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import axios from "axios";
 
@@ -48,7 +50,7 @@ const Main = (() => {
             <>
                 <article className="main">
                     <div className="main-wrap">
-                        <ul className="post-list">  
+                        <ul className="post-list">
                             <Load/>
                         </ul>
                     </div>
@@ -60,10 +62,18 @@ const Main = (() => {
             <>
             <article className="main">
                 <div className="main-wrap">
+
+                    <Route path="/" exact={true} component={Intro}/>
+
                     <Route path="/" exact>
-                        <Link to="/list">게시글 목록</Link>
+                        <Link to="/list" className="goBoardBtn">
+                        <img className="boardImg" src={boardImg} alt="boardImg" />
+                        <p className="goBoardTxt">게시판으로 이동</p>
+                        </Link>
                     </Route>
-                    <Switch>
+
+                    {/* Route - Topmenu */}
+                    <Switch> 
                         <Route path="/list" exact={false}>
                             <Topmenu/>
                         </Route>
@@ -72,6 +82,7 @@ const Main = (() => {
                         </Route>
                     </Switch>
                     
+                    {/* Route - List/Write/Post/Edit */}
                     <Switch>
                         <Route path="/list" exact>
                             <ul className="post-list">  
