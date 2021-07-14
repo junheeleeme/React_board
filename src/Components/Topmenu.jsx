@@ -39,11 +39,14 @@ const Topmenu = ({listUpdate}) => {
                     </Route>  
                     <Route path="/post/write" exact={true}>
                         <li><a href="/" onClick={goList}>목록</a></li>
-                    </Route> 
+                    </Route>
+                    <Route path="/post/update" exact={true}>
+                        <li><a href="/" onClick={goList}>목록</a></li>
+                    </Route>
                     <Route path="/post" exact={false}>
                         <li><a href="/" onClick={goList}>목록</a></li>
                         <li><a href="/" onClick={deletePost}>삭제</a></li>
-                        <li><a href="/">수정</a></li>
+                        <li><Link to={`/post/update?no=${no}`}>수정</Link></li>
                         <li><Link to="/post/write">글쓰기</Link></li>
                     </Route>            
                 </Switch>

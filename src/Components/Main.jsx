@@ -3,6 +3,7 @@ import Load from "./Load";
 import List from "./board/List";
 import Post from "./board/Post";
 import Write from "./board/Write";
+import Edit from "./board/Edit";
 import Topmenu from "./Topmenu";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +18,7 @@ const Main = (() => {
 
         axios.get('/post/list')
             .then((res) => {
+                console.log(res.data);
                 setPost(res.data);
                 setNowload(false);
             }).catch((err) => {
@@ -79,8 +81,11 @@ const Main = (() => {
                         <Route path="/post/write" exact={true}> 
                             <Write listUpdate={listUpdate}/>
                         </Route>
+                        <Route path="/post/update" exact={false}>
+                            <Edit listUpdate={listUpdate} post={post}/> 
+                        </Route>
                         <Route path="/post" exact={false}>
-                            <Post/>
+                            <Post post={post}/>
                         </Route>
                     </Switch>                        
                     

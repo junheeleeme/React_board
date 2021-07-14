@@ -21,31 +21,13 @@ app.get('/', (req, res)=>{
 
 app.get('/post/list', (req, res)=>{
 
-    
-
-    Post.find({}, {"title" : true, "createdAt" : true}).then((post)=>{
-
-        // const date = post._id.getTimestamp();
+    Post.find().then((post)=>{ //모든 post 조회
         res.status(200).send(post);
     }).catch((err)=>{
         console.log(err);
         res.sendStatus(400).send('DB Errer');
     });
 
-});
-
-app.get('/post', (req, res)=>{
-
-    const no = req.query.no;
-    
-    Post.findOne({_id : no}).then((post)=>{
-
-        res.status(200).send(post);
-    }).catch((err)=>{
-        console.log(err);
-        res.sendStatus(400).send('DB Errer');
-    });
-    
 });
 
 
@@ -71,6 +53,7 @@ app.delete('/post/delete?:id', (req, res)=>{
     const no = req.query.no;
 
     Post.deleteOne({_id : no}).then((post)=>{
+        console.log('Deleted Data');
         console.log(post);
         res.status(200).send('Delete!');
     }).catch((err)=>{
@@ -79,6 +62,22 @@ app.delete('/post/delete?:id', (req, res)=>{
     });
     
 });
+
+app.post('/post/update?:id', (req, res) =>{
+
+    const no = req.query.no;
+
+    Post.update({_id : no}, {title : req.body.title, body : req.body.body })
+    .then((post)=>{
+        console.log('Updated Data');
+        console.log(post);
+        res.status(200).send('Update!');
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(400).send('DB Errer');
+    });
+
+})
 
 
 app.listen(port, (err)=>{

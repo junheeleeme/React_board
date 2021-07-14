@@ -6,9 +6,7 @@ const Load = () => {
     return(
         
         <>
-            <div className="loader">
-                
-            </div>
+            <div className="loader"/>   
         </>
     )
 }

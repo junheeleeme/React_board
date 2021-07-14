@@ -1,15 +1,29 @@
-import React, { useState, useRef } from 'react'
-import { useHistory } from "react-router-dom";
+import React, { useState, useRef, useEffect } from 'react'
+import { useHistory, useLocation } from "react-router-dom";
+import queryString from 'query-string';
 import ReactDom from 'react-dom'
 import axios from 'axios';
 
-const Write = ({listUpdate}) => {
+const Edit = ({listUpdate, post}) => {
     const his = useHistory();
+    const { search } = useLocation();
+    const { no } = queryString.parse(search);
+    
     const titleInput = useRef(null);
     const bodyInput = useRef(null);
     const [title, setTitle] = useState();
     const [body, setBody] = useState();
 
+    useEffect(()=>{
+        post.map((p)=>{
+            if(p._id === no){
+                titleInput.current.value = p.title;
+                bodyInput.current.value = p.body;
+                setTitle(p.title);
+                setBody(p.body);
+            };
+        })
+    }, []);
 
     const changeInput = ((e) =>{
         if( e.target.id === "title-input"){
@@ -25,10 +39,7 @@ const Write = ({listUpdate}) => {
         
         if(title !== '' || body !== ''){
             
-            const title = title;
-            const body = body;
-
-            axios.post('/post/write/new', {
+            axios.post(`/post/update?no=${no}`, {
                     title : title,
                     body : body
             }).then((res)=>{
@@ -48,10 +59,10 @@ const Write = ({listUpdate}) => {
             <form action="/" id="write-form">
                 <input ref={titleInput} type="text" id="title-input" placeholder="글 제목" onChange={changeInput}/>
                 <textarea ref={bodyInput} name="body-input" id="body-input" placeholder="내용" onChange={changeInput} />
-                <button type="submit" id="writeBtn" onClick={onSubmit}>글쓰기</button>
+                <button type="submit" id="writeBtn" onClick={onSubmit}>수정하기</button>
             </form>
         </>
     )
 }
 
-export default Write;
+export default Edit;

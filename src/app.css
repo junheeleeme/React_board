@@ -35,10 +35,6 @@ a{
     transition: 0.2s ease;
 }
 
-.top-menu>li>a:hover{
-    background-color: #EEEEEE;
-}
-
 @media screen and (max-width: 767px) {
     .top-menu{
         margin-bottom: 10px;
@@ -279,7 +275,7 @@ a{
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: url('./images/loading.png') no-repeat center / 100%;
+    background: url('./images/loading.png') no-repeat center / 90%;
     animation: loading-effect 1.75s 0s linear infinite;
 }
 
