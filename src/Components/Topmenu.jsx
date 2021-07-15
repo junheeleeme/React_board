@@ -10,23 +10,11 @@ const Topmenu = ({listUpdate}) => {
     const { no } = queryString.parse(search);
     const his = useHistory();
 
-    const deletePost = (e) => {
-        e.preventDefault();
-
-        axios.delete(`/post/delete?no=${no}`).then((res)=>{
-            if(res.status === 200){
-                listUpdate();
-                his.push('/list');
-            }
-        }).catch(err=>{
-            console.log(err);
-        });
-    }
-
     const goList = (e) =>{
         e.preventDefault();
+
         listUpdate();
-        his.push('/list');
+        his.push('/list');        
     }
 
     return(
@@ -40,13 +28,13 @@ const Topmenu = ({listUpdate}) => {
                     <Route path="/post/write" exact={true}>
                         <li><a href="/" onClick={goList}>목록</a></li>
                     </Route>
-                    <Route path="/post/update" exact={true}>
+                    <Route path="/post/update" exact={false}>
                         <li><a href="/" onClick={goList}>목록</a></li>
                     </Route>
                     <Route path="/post" exact={false}>
                         <li><a href="/" onClick={goList}>목록</a></li>
-                        <li><a href="/" onClick={deletePost}>삭제</a></li>
-                        <li><Link to={`/post/Certifiedpage?no=${no}`}>수정</Link></li>
+                        <li><Link to={`/post/delete/usercheck?no=${no}`}>삭제</Link></li>
+                        <li><Link to={`/post/update/usercheck?no=${no}`}>수정</Link></li>
                         <li><Link to="/post/write">글쓰기</Link></li>
                     </Route>            
                 </Switch>

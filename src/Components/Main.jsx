@@ -93,11 +93,14 @@ const Main = (() => {
                         <Route path="/post/write" exact={true}> 
                             <Write listUpdate={listUpdate}/>
                         </Route>
+                        <Route path="/post/update/usercheck" exact={false}>
+                            <UserCheck action={'update'}/> 
+                        </Route>
+                        <Route path="/post/delete/usercheck" exact={false}>
+                            <UserCheck action={'delete'} listUpdate={listUpdate} /> 
+                        </Route>
                         <Route path="/post/update" exact={false}>
                             <Edit listUpdate={listUpdate} post={post}/> 
-                        </Route>
-                        <Route path="/post/certifiedpage" exact={false}>
-                            <UserCheck post={post}/> 
                         </Route>
                         <Route path="/post" exact={false}>
                             <Post post={post}/>

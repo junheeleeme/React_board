@@ -45,7 +45,7 @@ const Edit = ({listUpdate, post}) => {
             }).then((res)=>{
                 if(res.status === 200){
                     listUpdate();
-                    his.replace('/list');
+                    his.replace(`/post?no=${no}`);
                 }
             }).catch(err=>{
                 console.log(err);

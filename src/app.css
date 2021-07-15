@@ -214,7 +214,7 @@ a{
 
 .post-list>li>a>span{
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     font-size: 16px;
 }
 .list-title{
