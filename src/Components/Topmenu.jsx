@@ -46,7 +46,7 @@ const Topmenu = ({listUpdate}) => {
                     <Route path="/post" exact={false}>
                         <li><a href="/" onClick={goList}>목록</a></li>
                         <li><a href="/" onClick={deletePost}>삭제</a></li>
-                        <li><Link to={`/post/update?no=${no}`}>수정</Link></li>
+                        <li><Link to={`/post/Certifiedpage?no=${no}`}>수정</Link></li>
                         <li><Link to="/post/write">글쓰기</Link></li>
                     </Route>            
                 </Switch>

@@ -17,7 +17,9 @@ app.use('/', router);
 app.get('/post/list', board);
 app.post('/post/write/new', board);
 app.delete('/post/delete?:id', board);
+app.post('/post/usercheck?:id', board);
 app.post('/post/update?:id', board);
+
 
 
 app.listen(port, (err)=>{

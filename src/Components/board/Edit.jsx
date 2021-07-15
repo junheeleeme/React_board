@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
+import ReactDom from 'react-dom'
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
-import ReactDom from 'react-dom'
 import axios from 'axios';
 
 const Edit = ({listUpdate, post}) => {
@@ -37,7 +37,7 @@ const Edit = ({listUpdate, post}) => {
 
         e.preventDefault();
         
-        if(title !== '' || body !== ''){
+        if( title_valid() && body_valid() ){
             
             axios.post(`/post/update?no=${no}`, {
                     title : title,
@@ -52,7 +52,25 @@ const Edit = ({listUpdate, post}) => {
             });
         }
         
-    })
+    });
+
+    const title_valid = () => {
+        if(title !== ''){
+            return true;
+        }else{
+            alert('제목을 입력해주세요.');
+            return false;
+        }
+    }
+
+    const body_valid = () => {
+        if(body !== ''){
+            return true;
+        }else{
+            alert('내용을 입력해주세요.');
+            return false;
+        }
+    }
 
     return(
         <>

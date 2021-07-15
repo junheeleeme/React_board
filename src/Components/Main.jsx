@@ -4,6 +4,7 @@ import List from "./board/List";
 import Post from "./board/Post";
 import Write from "./board/Write";
 import Edit from "./board/Edit";
+import UserCheck from "./board/UserCheck";
 import Intro from "./Intro";
 import Topmenu from "./Topmenu";
 import boardImg from "../images/board.png";
@@ -94,6 +95,9 @@ const Main = (() => {
                         </Route>
                         <Route path="/post/update" exact={false}>
                             <Edit listUpdate={listUpdate} post={post}/> 
+                        </Route>
+                        <Route path="/post/certifiedpage" exact={false}>
+                            <UserCheck post={post}/> 
                         </Route>
                         <Route path="/post" exact={false}>
                             <Post post={post}/>

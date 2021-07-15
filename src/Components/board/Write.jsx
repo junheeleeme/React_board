@@ -32,14 +32,13 @@ const Write = ({listUpdate}) => {
 
         e.preventDefault();
 
-        if(title !== '' && body !== '' && nicInput.current.value.length > 0
-            && pwInput.current.value.length > 3 ){
+        if( title_valid() && body_valid() && nic_valid() && passwd_valid() ){
 
             axios.post('/post/write/new', {
                     title : title,
                     body : body,
                     nic : nic,
-                    passwd : passwd,
+                    passwd : passwd.toString()
             }).then((res)=>{
                 if(res.status === 200){
                     listUpdate();
@@ -52,6 +51,43 @@ const Write = ({listUpdate}) => {
         }
         
     });
+
+    const title_valid = () => {
+        if(title !== ''){
+            return true;
+        }else{
+            alert('제목을 입력해주세요.');
+            return false;
+        }
+    }
+
+    const body_valid = () => {
+        if(body !== ''){
+            return true;
+        }else{
+            alert('내용을 입력해주세요.');
+            return false;
+        }
+    }
+
+    const nic_valid = () => {
+        if(nicInput.current.value.length !== 0){
+            return true;
+        }else{
+            alert('닉네임을 입력해주세요.');
+            return false;
+        }
+    }
+
+    const passwd_valid = () => {
+        if(pwInput.current.value.length > 3 && pwInput.current.value.length < 7){
+            return true;
+        }else{
+            alert('비밀번호(4~6자리)를 입력해주세요.');
+            return false;
+        }
+    }
+
 
     return(
         <>
