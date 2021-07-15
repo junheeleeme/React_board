@@ -9,6 +9,12 @@ const postSchema = new Schema({
         body : {
             type : String,
         },
+        nicName : {
+            type : String,
+        },
+        passwd : {
+            type : String,
+        }
     },
     {
         timestamps: true

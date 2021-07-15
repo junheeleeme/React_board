@@ -34,7 +34,7 @@ const Post = ({post})=> {
                 <h2 className="post-title">{title}</h2>
                 <p className="post-date">{date}</p>
             </div>
-            
+                
             <div ref={ele_body} className="post-content">
             </div>
         
