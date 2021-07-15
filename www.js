@@ -14,11 +14,11 @@ const Post = require("./models/Post"); //몽고DB 스키마 모델
 
 app.use('/', router);
 
-app.get('/post/list', board);
-app.post('/post/write/new', board);
-app.delete('/post/delete?:id', board);
-app.post('/post/usercheck?:id', board);
-app.post('/post/update?:id', board);
+app.get('/post/list', board); //게시글 목록 요청
+app.post('/post/write/new', board); //게시글 작성
+app.post('/post/usercheck?:id', board); //본인 게시글 인증
+app.delete('/post/delete?:id', board); //게시글 삭제
+app.post('/post/update?:id', board); //게시글 업데이트
 
 
 

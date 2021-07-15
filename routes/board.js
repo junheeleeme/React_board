@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 board.use(bodyParser.json());
 board.use(bodyParser.urlencoded({extended : true}));
 
+
+//게시글 목록 요청
 board.get('/post/list', (req, res)=>{
 
     Post.find({}, {passwd : false, updatedAt: false}).then((post)=>{ //모든 post 조회
@@ -21,7 +23,7 @@ board.get('/post/list', (req, res)=>{
 
 });
 
-
+//게시글 작성
 board.post('/post/write/new', (req, res)=>{
 
     const newPost = new Post();
@@ -43,6 +45,7 @@ board.post('/post/write/new', (req, res)=>{
 
 });
 
+//본인 게시글 인증 - bcrypt 사용
 board.post('/post/usercheck?:id', (req, res)=>{
 
     const no = req.query.no;
@@ -53,14 +56,14 @@ board.post('/post/usercheck?:id', (req, res)=>{
         bcrypt.compare(reqPasswd, post.passwd, (err, same)=>{
             
             if(!err){
-                if(!same){
+                if(!same){ //인증 성공
                     res.status(400).send();
                 }else{
-                    res.status(200).send("ok");
+                    res.status(200).send();
                 }
             }else{
                 console.log(err);
-                res.status(400).send("ok");
+                res.status(400).send();
             }
 
         });
@@ -70,7 +73,7 @@ board.post('/post/usercheck?:id', (req, res)=>{
     
 });
 
-
+//게시글 삭제
 board.delete('/post/delete?:id', (req, res)=>{
     
     const no = req.query.no;
@@ -86,6 +89,7 @@ board.delete('/post/delete?:id', (req, res)=>{
     
 });
 
+//게시글 업데이트
 board.post('/post/update?:id', (req, res) =>{
 
     const no = req.query.no;
@@ -94,10 +98,10 @@ board.post('/post/update?:id', (req, res) =>{
     .then((post)=>{
         console.log('Updated Data');
         console.log(post);
-        res.status(200).send('Update!');
+        res.status(200).send();
     }).catch((err)=>{
         console.log(err);
-        res.status(400).send('DB Errer');
+        res.status(400).send();
     });
 
 })
