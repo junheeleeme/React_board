@@ -1,83 +1,23 @@
+"ust strict"
+
 const express = require("express");
 const app = express();
-const path = require("path")
+const router = require('./routes/router');
+const board = require('./routes/board');
 const mongoose = require("mongoose");
+
 require("dotenv").config({path: 'variables.env'});
 const mongo_uri = process.env.MONGODB_URI;
 const port = process.env.PORT;
-const Post = require("./models/Post");
-const bodyParser = require('body-parser');                                                                     
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}));
-
-app.use(express.static(path.join(__dirname, './dist')));
-//정적 파일 제공을 위한 선언
+const Post = require("./models/Post"); //몽고DB 스키마 모델
 
 
-app.get('/', (req, res)=>{
-    res.sendFile(path.join(__dirname), './dist/index.html');
-});
+app.use('/', router);
 
-app.get('/post/list', (req, res)=>{
-
-    Post.find().then((post)=>{ //모든 post 조회
-        res.status(200).send(post);
-    }).catch((err)=>{
-        console.log(err);
-        res.sendStatus(400).send('DB Errer');
-    });
-
-});
-
-
-app.post('/post/write/new', (req, res)=>{
-
-    const newPost = new Post();
-
-    newPost.title = req.body.title;
-    newPost.body = req.body.body;
-
-    newPost.save().then((post)=>{
-        res.status(200).send('OK');
-        console.log("Input Data");
-        console.log(post);
-    }).catch((err)=>{
-        res.status(400).send('Failed Insert DB');
-    });
-
-});
-
-app.delete('/post/delete?:id', (req, res)=>{
-    
-    const no = req.query.no;
-
-    Post.deleteOne({_id : no}).then((post)=>{
-        console.log('Deleted Data');
-        console.log(post);
-        res.status(200).send('Delete!');
-    }).catch((err)=>{
-        console.log(err);
-        res.sendStatus(400).send('DB Errer');
-    });
-    
-});
-
-app.post('/post/update?:id', (req, res) =>{
-
-    const no = req.query.no;
-
-    Post.update({_id : no}, {title : req.body.title, body : req.body.body })
-    .then((post)=>{
-        console.log('Updated Data');
-        console.log(post);
-        res.status(200).send('Update!');
-    }).catch((err)=>{
-        console.log(err);
-        res.sendStatus(400).send('DB Errer');
-    });
-
-})
+app.get('/post/list', board);
+app.post('/post/write/new', board);
+app.delete('/post/delete?:id', board);
+app.post('/post/update?:id', board);
 
 
 app.listen(port, (err)=>{
@@ -94,6 +34,3 @@ app.listen(port, (err)=>{
     }
 })
 
-
-
-// POST 데이터 삽입
