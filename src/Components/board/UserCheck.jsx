@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const UserCheck = ({listUpdate, action}) => {
     const [pw, setPw] = useState();
+    const subtitle = useRef(null);
     const pwInput = useRef(null);
     const his = useHistory();
     const { search } = useLocation();
@@ -38,12 +39,20 @@ const UserCheck = ({listUpdate, action}) => {
                     }
                 }
             }).catch(err=>{
-                console.log("UserCheck");
-                alert("잘못된 비밀번호입니다.");
+                subtitle.current.innerText = "";
+
+                setTimeout( ()=>{
+                    subtitle.current.style.color = '#ff265d';
+                    subtitle.current.innerText = "잘못된 비밀번호입니다.";
+                }, 100)
+                                
+                pwInput.current.focus();
             });
 
         }else{
-            alert("비밀번호를 입력해주세요. (4~6자리)");
+            subtitle.current.innerText =  "비밀번호를 입력해주세요. (4~6자리)";
+            subtitle.current.style.color = '#787A91';
+            pwInput.current.focus();
         }
     }
 
@@ -51,11 +60,20 @@ const UserCheck = ({listUpdate, action}) => {
         setPw(e.target.value);
     }
 
+    const pressEnter = (e) => {
+        if(e.charCode === 13){
+            onSubmit();
+        }
+    }
+
     return(
         <> 
-            <h3>비밀번호 확인</h3>
-            <input ref={pwInput} type="password" id="chk-passwd" onChange={onChange}/>
-            <button type="submit" onClick={onSubmit}>확인</button>
+            <div className="usercheck-wrap">
+                <h3 ref={subtitle} className="subtitle">비밀번호 확인</h3>
+                <input ref={pwInput} type="password" id="chk-passwd" maxLength={6} onChange={onChange} onKeyPress={pressEnter}/>
+                <button type="submit" id="chk-pwBtn" onClick={onSubmit}>확인</button>
+            </div>
+
         </>
     )
 }

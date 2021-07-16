@@ -74,7 +74,7 @@ const Edit = ({listUpdate, post}) => {
 
     return(
         <>
-            <form action="/" id="write-form">
+            <form action="/" id="edit-form">
                 <input ref={titleInput} type="text" id="title-input" placeholder="글 제목" onChange={changeInput}/>
                 <textarea ref={bodyInput} name="body-input" id="body-input" placeholder="내용" onChange={changeInput} />
                 <button type="submit" id="writeBtn" onClick={onSubmit}>수정하기</button>

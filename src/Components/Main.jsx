@@ -73,7 +73,7 @@ const Main = (() => {
                         </Link>
                     </Route>
 
-                    {/* Route - Topmenu */}
+                    {/* Switch-Route -> Topmenu */}
                     <Switch> 
                         <Route path="/list" exact={false}>
                             <Topmenu/>
@@ -83,7 +83,8 @@ const Main = (() => {
                         </Route>
                     </Switch>
                     
-                    {/* Route - List/Write/Post/Edit */}
+                    {/* Switch-Route -> List / Write / Post / Edit */}
+
                     <Switch>
                         <Route path="/list" exact>
                             <ul className="post-list">  
