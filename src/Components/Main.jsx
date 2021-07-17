@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Load from "./Load";
 import List from "./board/List";
 import Post from "./board/Post";
@@ -13,16 +13,17 @@ import axios from "axios";
 
 
 const Main = (() => {
-    
+
     const [post, setPost] = useState([]);
     const [nowload, setNowload] = useState(true);
-    
+    const [total, setTotal] = useState(true);
+
     useEffect(()=>{
 
         axios.get('/post/list')
-            .then((res) => {
-                console.log(res.data);
-                setPost(res.data);
+            .then((res) => {            //post[0] : 포스트
+                setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
+                setTotal(res.data[1]);
                 setNowload(false);
             }).catch((err) => {
                 console.log(err);
@@ -35,9 +36,9 @@ const Main = (() => {
         setNowload(true);
         console.log("Second Rendering");
         axios.get('/post/list')
-            .then((res) => {
-                //console.log(res)
-                setPost(res.data);
+            .then((res) => {            //post[0] : 포스트
+                setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
+                setTotal(res.data[1]);
                 setNowload(false);
             }).catch((err) => {
                 console.log(err);
@@ -49,20 +50,14 @@ const Main = (() => {
     if(nowload){ //로딩중
         return(
             <>
-                <article className="main">
-                    <div className="main-wrap">
-                        <ul className="post-list">
-                            <Load/>
-                        </ul>
-                    </div>
-                </article>
+                <Load/>
             </>
         )
     }else{      //로딩완료
         return(
             <>
             <article className="main">
-                <div className="main-wrap">
+                
 
                     <Route path="/" exact={true} component={Intro}/>
 
@@ -108,7 +103,7 @@ const Main = (() => {
                         </Route>
                     </Switch>                        
                     
-                </div>
+
             </article>
         </>
         )

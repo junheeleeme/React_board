@@ -12,7 +12,6 @@ const UserCheck = ({listUpdate, action}) => {
     const { search } = useLocation();
     const { no } = queryString.parse(search);
 
-
     const onSubmit = () => { 
 
         if( pwInput.current.value !== ''){ //비밀번호 입력 체크

@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import { Route, Switch, Link } from "react-router-dom";
 
 const List = ({post}) => {
-
+        console.log(post);
     return(
         <> 
             {
@@ -12,6 +12,9 @@ const List = ({post}) => {
                         <Link to={'/post'+ '?no='+post._id} >
                             <span className="list-title">
                                 {post.title}
+                            </span>
+                            <span className="list-nic">
+                                {post.nicName}
                             </span>
                             <span className="list-date">
                                 {post.createdAt.substr(0, 10)}

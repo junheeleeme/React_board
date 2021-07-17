@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { Link, Route, Switch, useLocation, useHistory } from "react-router-dom";
-import axios from 'axios';
 import queryString from 'query-string';
 
 const Topmenu = ({listUpdate}) => {
@@ -29,6 +28,9 @@ const Topmenu = ({listUpdate}) => {
                         <li><a href="/" onClick={goList}>목록</a></li>
                     </Route>
                     <Route path="/post/update" exact={false}>
+                        <li><a href="/" onClick={goList}>목록</a></li>
+                    </Route>
+                    <Route path="/post/delete" exact={false}>
                         <li><a href="/" onClick={goList}>목록</a></li>
                     </Route>
                     <Route path="/post" exact={false}>

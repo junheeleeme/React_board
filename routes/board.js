@@ -14,12 +14,23 @@ board.use(bodyParser.urlencoded({extended : true}));
 //게시글 목록 요청
 board.get('/post/list', (req, res)=>{
 
-    Post.find({}, {passwd : false, updatedAt: false}).then((post)=>{ //모든 post 조회
-        res.status(200).send(post);
-    }).catch((err)=>{
+    Post.count().then((cnt)=>{
+        
+        Post.find({}, {passwd : false, updatedAt: false}).then((post)=>{ //모든 post 조회
+            
+            const _post = [[...post],
+                            {count : cnt}];
+    
+            res.status(200).send(_post);
+
+        }).catch((err)=>{
+            console.log(err);
+            res.sendStatus(400).send('DB Errer');
+        });
+
+    }).catch(err => {
         console.log(err);
-        res.sendStatus(400).send('DB Errer');
-    });
+    })
 
 });
 
