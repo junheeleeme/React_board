@@ -104,46 +104,13 @@ a{
     padding: 30px 0;
 }
 
-
-.goBoardBtn{
-    display: inherit;   
-    width: 210px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 20px 0;
-    color: #787A91;
-    text-align: center;
-    background-color: #EEEEEE;
-    border-radius: 5px;    
-    transition: 0.2s ease;
-}
-
-.goBoardBtn:hover{
-    background: #DBE6FD;
-}
-
-.boardImg{
-    display: block;
-    width: 70px;
-    height: 70px;
-    font-size: 17px;
-}
-
-.goBoardTxt{
-    margin-top: 10px;
-}
-
 @media screen and (max-width: 1080px) {
     .main{
         padding: 30px 10px;
     }
 }
 
-
 @media screen and (max-width: 767px) {
-    .goBoardBtn{
-        top: 75%;
-    }
     .main{
         padding: 10px;
     }
@@ -157,15 +124,20 @@ a{
     user-select: none;
 }
 
-.img-wrap{
-    display: inline-block;
-    width: 100%;
-    margin: 30px auto 50px auto;
+.introTxt{
+    position: absolute;
+    top: 10%; left: 50%;
+    transform: translate(-50%, 0);
+    width: 95%;
+    font-size: 22px; 
 }
 
-.introTxt{
-    font-size: 22px; 
-    margin-top: 30px;
+.img-wrap{
+    display: inline-block;
+    position: absolute;
+    top: 25%; left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
 }
 
 .img-wrap>img{
@@ -185,18 +157,84 @@ a{
     font-weight: 100;
 }
 
+.goBoardBtn{
+    display: inline-block;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 340px;
+    height: 210px;
+    padding: 20px 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #787A91;
+    text-align: center;
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+
+.goBoardBtn:hover{
+    background: #DBE6FD;
+}
+
+.boardImg{
+    display: block;
+    width: 120px;
+    height: 120px;
+    font-size: 17px;
+}
+
+.goBoardTxt{
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+
 @media screen and (max-width: 767px) {
-    .introTxt{ font-size: 18px; }
-    .img-wrap{ margin: 30px 0;}
-    .img-wrap>img{ transform: scale(0.7); }
-    .img-wrap>span{ margin:0; font-size: 30px; }
+    .introTxt{ 
+        top: 7%;
+        font-size: 18px;
+    }
+    .img-wrap{
+        top: 23%;
+    }
+    .img-wrap>span{ 
+        font-size: 30px;
+        margin: 0 15px;
+    }
+
+    .goBoardBtn{
+        bottom: 10%;
+        padding: 25px 0;
+        width: 300px;
+        height: 190px;
+    }
+    
+    .boardImg{
+        display: block;
+        width: 100px;
+        height: 100px;
+        font-size: 17px;
+    }
+    
+    .goBoardTxt{
+        font-size: 18px;
+        margin-top: 15px;
+    }
+}
+@media screen and (max-width: 615px) {
+    .img-wrap>span{ margin: 0 10px; }
 }
 
 @media screen and (max-width: 524px) {
     .introTxt{ font-size: 18px; }
-    .img-wrap>img{ transform: scale(0.5); }
-    .img-wrap>span{ margin: 0 -25px; font-size: 25px; }
-}
+    .img-wrap>img{ transform: scale(0.6); }
+    .img-wrap>span{ 
+        margin: 0 -20px;
+        font-size: 25px; }
+    }
 
 
 /* ---------- List ---------- */
@@ -250,13 +288,13 @@ a{
         font-size: 15px;
     }
     .list-title{
-        width: 63%;
+        width: 70%;
     }
     .list-nic{ 
-        width: 15%;
+        width: 13%;
     }
     .list-date{
-        width: 22%;
+        width: 17%;
     }
 }
 
@@ -310,7 +348,7 @@ a{
     position: absolute;
     top: 48%; left: 0;
     transform: translate(0, -50%);
-    width: 82%;
+    width: 87%;
     margin: 0 0 10px 0;
     padding-left: 10px;
     font-size: 18px;
@@ -322,7 +360,7 @@ a{
 .post-title-wrap>span{
     position: absolute;
     font-size: 14px;
-    width: 10%;
+    width: 13%;
     padding: 0 10px 0 0;
     text-align: right;
     vertical-align: middle;

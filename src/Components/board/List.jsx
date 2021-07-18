@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import { Route, Switch, Link } from "react-router-dom";
 
 const List = ({post}) => {
-        console.log(post);
+        
     return(
         <> 
             {
