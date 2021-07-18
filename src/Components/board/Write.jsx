@@ -53,7 +53,7 @@ const Write = ({listUpdate}) => {
     });
 
     const title_valid = () => {
-        if(title !== ''){
+        if(titleInput.current.value !== ''){
             return true;
         }else{
             alert('제목을 입력해주세요.');
@@ -62,7 +62,7 @@ const Write = ({listUpdate}) => {
     }
 
     const body_valid = () => {
-        if(body !== ''){
+        if(bodyInput.current.value !== ''){
             return true;
         }else{
             alert('내용을 입력해주세요.');

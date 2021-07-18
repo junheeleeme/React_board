@@ -5,7 +5,7 @@ const { HotModuleReplacementPlugin } = require("webpack");
 module.exports = {
 
     name : 'React-webpack-setting', // 웹팩 설정 이름
-    mode : 'development', //실서비스 : Production
+    mode : 'production', //'development', //실서비스 : production
     devtool : 'eval', //  <-- 여기까지는 생략가능
     resolve: {
         modules: ['node_modules'],
@@ -63,5 +63,9 @@ module.exports = {
             publicPath: './'
         }),
        // new CleanWebpackPlugin(),
-    ]
+    ],
+    performance: {
+        hints: false,
+    },
+
 };

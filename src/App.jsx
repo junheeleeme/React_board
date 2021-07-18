@@ -11,7 +11,7 @@ const App = () => {
     
     return(
         <>
-            <BrowserRouter>
+            <BrowserRouter basename="/simple-react-board">
                 <Header/>                
                     <Main/>
                 <Footer/>

@@ -21,7 +21,7 @@ const Main = (() => {
     useEffect(()=>{
 
         axios.get('/post/list')
-            .then((res) => {            //post[0] : 포스트
+            .then((res) => {          //post[0] : 포스트
                 setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
                 setTotal(res.data[1]);
                 setNowload(false);

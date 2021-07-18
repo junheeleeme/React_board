@@ -23,7 +23,6 @@ const Post = ({post})=> {
                 ele_body.current.innerText = p.body;
                 setDate(p.createdAt.substr(0, 10));
             };
-
         })
     }, []); 
     
