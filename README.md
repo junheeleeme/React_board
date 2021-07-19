@@ -4,7 +4,7 @@
 * 리액트 Webpack / babel 사용
 * React-Router-Dom을 사용해 SPA(Single Page Application)형태로 구현
 * React.js <-> Node.js <-> MongoDB 연동
-* Bcrypt 암호화
+* Bcrypt 암호화 사용
 
 
 ## Screen
