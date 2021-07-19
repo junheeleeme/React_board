@@ -40,16 +40,27 @@ const Write = ({listUpdate}) => {
                     nic : nic,
                     passwd : passwd.toString()
             }).then((res)=>{
-                if(res.status === 200){
+
+                if(res.status === 200){// 글 DB 저장완료
+
                     listUpdate();
-                    his.replace('/list');
-                }
+                    axios.post('/post', { //작성한 글로 이동하기 위해 글 id조회
+                        title : title,
+                        body : body,
+                        nic : nic,
+                    }).then((res)=>{
+                        
+                        his.replace(`/post?no=${res.data}`);
+                    }).catch(err=>{
+                        console.log(err);
+                    });
+                };
+
             }).catch(err=>{
                 console.log(err);
             });
 
         }
-        
     });
 
     const title_valid = () => {

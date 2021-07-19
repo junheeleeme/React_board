@@ -10,11 +10,25 @@ const bodyParser = require('body-parser');
 board.use(bodyParser.json());
 board.use(bodyParser.urlencoded({extended : true}));
 
+//게시글 조회
+board.post('/post', (req, res)=>{
+
+    Post.findOne({title : req.body.title, body : req.body.body, nicName : req.body.nic},
+        {_id : true}).then((no)=>{ //작성 완료된 글 id 조회 후 전달
+        
+        res.status(200).send(no._id);
+
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(400).send('DB Errer');
+    });
+
+});
 
 //게시글 목록 요청
 board.get('/post/list', (req, res)=>{
 
-    Post.count().then((cnt)=>{
+    Post.countDocuments().then((cnt)=>{
         
         Post.find({}, {passwd : false, updatedAt: false}).then((post)=>{ //모든 post 조회
             
@@ -50,6 +64,7 @@ board.post('/post/write/new', (req, res)=>{
         res.status(200).send('OK');
         console.log("Input Data");
         console.log(post);
+
     }).catch((err)=>{
         res.status(400).send('Failed Insert DB');
     });
