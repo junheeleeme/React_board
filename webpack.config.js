@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require("webpack");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 
@@ -62,7 +63,7 @@ module.exports = {
             template: './public/index.html',
             publicPath: './'
         }),
-       // new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),
     ],
     performance: {
         hints: false,
