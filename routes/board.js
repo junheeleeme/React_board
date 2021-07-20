@@ -6,7 +6,6 @@ const Post = require("../models/Post");
 const bcrypt = require('bcrypt');
 
 const bodyParser = require('body-parser');                                                                     
-
 board.use(bodyParser.json());
 board.use(bodyParser.urlencoded({extended : true}));
 
