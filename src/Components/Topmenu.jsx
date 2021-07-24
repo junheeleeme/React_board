@@ -14,7 +14,7 @@ const Topmenu = ({listUpdate}) => {
         e.preventDefault();
 
         listUpdate();
-        his.push('/list');        
+        his.push('/list/1');        
     }
 
     return(

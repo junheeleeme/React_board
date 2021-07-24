@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactDom from "react-dom";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Pagination } from '@material-ui/lab';
 
@@ -7,20 +6,26 @@ import { Pagination } from '@material-ui/lab';
 const List = ({post, postCnt}) => {
     const his = useHistory();
     const params = useParams();
-    const [pagiCnt, setPagiCnt] = useState( postCnt > 10 ? Number((postCnt/10)+1.0).toFixed(0) : 1 );
     const [currentPage, setCurrentPage] = useState(Number(params.no));
+    const [renderPost, setRenderPost] = useState( params.no > 1 ? post.slice((params.no-1)*10, params.no*10) : post.slice(0, params.no*10) );
+    const [pagiCnt, setPagiCnt] = useState( postCnt > 10 ? Number((postCnt/10)+1.0).toFixed(0) : 1 );
+    
 
     const pagiHandler = (e, value) =>{ //페이지 이동
+        setRenderPost(value > 1 ? post.slice((value-1)*10, value*10) : post.slice(0*10, value*10));
         his.push(`/list/${value}`);
         setCurrentPage(value);
     }
+    console.log(params.no);
+    console.log(renderPost);
 
 
     return(
         <> 
             {
-                post.map((post, idx) =>
-                    <li key={post._id + idx}>
+                
+                renderPost.map((post, idx) =>
+                    <li key={ idx + post._id}>
                         <Link to={'/post'+ '?no='+post._id} >
                             <span className="list-title">
                                 {post.title}

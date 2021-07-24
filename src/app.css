@@ -27,6 +27,7 @@ a{
 .top-menu{
     display: inline-block;
     width: 100%;
+    height: 35px;
     margin-bottom: 10px;
     padding-left: 0;
     list-style: none;
@@ -97,7 +98,7 @@ a{
 
 @media screen and (max-width: 1080px) {
     .main{
-        padding: 30px 10px;
+        padding: 10px 10px;
     }
 }
 
@@ -232,7 +233,9 @@ a{
 
 .post-list{
     display: inline-block;
+    position: relative;
     width: 100%;
+    height: calc(100vh - 190px);
     list-style: none;
     padding-left: 0;
 }
@@ -275,6 +278,9 @@ a{
 }
 
 .MuiPagination-root{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
     margin: 20px 0 0 0;
 }
 

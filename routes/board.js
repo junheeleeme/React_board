@@ -29,7 +29,7 @@ board.get('/post/list', (req, res)=>{
 
     Post.countDocuments().then((cnt)=>{
         
-        Post.find({}, {passwd : false, updatedAt: false}).then((post)=>{ //모든 post 조회
+        Post.find({}, {passwd : false, updatedAt: false}).sort({"_id" : -1}).then((post)=>{ //모든 post 조회
             
             const _post = [[...post],
                             {count : cnt}];
