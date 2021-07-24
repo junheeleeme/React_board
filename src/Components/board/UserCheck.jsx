@@ -1,26 +1,27 @@
 import React, {useState, useRef} from "react";
 import ReactDom from "react-dom";
 import { useHistory, useLocation } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
 import queryString from 'query-string';
 import axios from 'axios';
 
 const UserCheck = ({listUpdate, action}) => {
-    const [pw, setPw] = useState();
-    const subtitle = useRef(null);
-    const pwInput = useRef(null);
+    const [pw, setPw] = useState("");
+    const [inputErr, setInputErr] = useState(false);
+    const [errMsg, setErrMsg] = useState("");
+    
     const his = useHistory();
     const { search } = useLocation();
     const { no } = queryString.parse(search);
 
     const onSubmit = () => { 
-
-        if( pwInput.current.value !== ''){ //비밀번호 입력 체크
+            
+        if( pw !== '' ){ //비밀번호 입력 체크
             
             axios.post(`/post/usercheck?no=${no}`, {
                 passwd : pw
             }).then((res)=>{
-
-                if(res.status === 200){
 
                     if(action === 'update'){    //게시글 수정
                         his.push(`/post/update?no=${no}`);
@@ -36,22 +37,15 @@ const UserCheck = ({listUpdate, action}) => {
                             console.log(err);
                         });
                     }
-                }
-            }).catch(err=>{
-                subtitle.current.innerText = "";
 
-                setTimeout( ()=>{
-                    subtitle.current.style.color = '#ff265d';
-                    subtitle.current.innerText = "잘못된 비밀번호입니다.";
-                }, 100)
-                                
-                pwInput.current.focus();
+            }).catch(err=>{
+                setInputErr(true);      
+                setErrMsg("잘못된 비밀번호입니다.");
             });
 
-        }else{
-            subtitle.current.innerText =  "비밀번호를 입력해주세요. (4~6자리)";
-            subtitle.current.style.color = '#787A91';
-            pwInput.current.focus();
+        }else{ // 아무것도 입력 안했을 때
+            setInputErr(true);
+            setErrMsg("비밀번호를 입력해주세요.");
         }
     }
 
@@ -68,9 +62,12 @@ const UserCheck = ({listUpdate, action}) => {
     return(
         <> 
             <div className="usercheck-wrap">
-                <h3 ref={subtitle} className="subtitle">비밀번호 확인</h3>
-                <input ref={pwInput} type="password" id="chk-passwd" maxLength={6} onChange={onChange} onKeyPress={pressEnter}/>
-                <button type="submit" id="chk-pwBtn" onClick={onSubmit}>확인</button>
+                <div className="input-wrap">
+                    <TextField required onChange={onChange} onKeyPress={pressEnter} id="chk-passwd" type="password"  label="비밀번호 확인" defaultValue="" maxLength={6}  autoFocus={true} error={inputErr} helperText={errMsg}/>
+                </div>
+                <div className="btn-wrap">
+                    <Button variant="contained" color="default" id="chk-pwBtn" onClick={onSubmit} fullWidth={true}>확인</Button>
+                </div>
             </div>
 
         </>

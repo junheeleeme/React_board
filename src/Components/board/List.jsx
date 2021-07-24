@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
-import { Route, Switch, Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { Pagination } from '@material-ui/lab';
 
-const List = ({post}) => {
-        
+
+const List = ({post, postCnt}) => {
+    const his = useHistory();
+    const params = useParams();
+    const [pagiCnt, setPagiCnt] = useState( postCnt > 10 ? Number((postCnt/10)+1.0).toFixed(0) : 1 );
+    const [currentPage, setCurrentPage] = useState(Number(params.no));
+
+    const pagiHandler = (e, value) =>{ //페이지 이동
+        his.push(`/list/${value}`);
+        setCurrentPage(value);
+    }
+
+
     return(
         <> 
             {
@@ -23,6 +35,7 @@ const List = ({post}) => {
                     </li>
                 )
             }
+            <Pagination count={pagiCnt} color="primary" page={currentPage} onChange={pagiHandler}/>
         </>
     )
 }

@@ -33,18 +33,10 @@ a{
 }
 .top-menu>li{
     float: right;
+    margin-left: 5px;
 }
 .top-menu>li>a{
     display: inline-block;
-    height: 30px;
-    margin-left: 3px;
-    padding: 3px 12px;
-    color: #293B5F;
-    vertical-align: middle;
-    background-color: #DBE6FD;
-    border-radius: 3px;
-    font-size: 15px;
-    transition: 0.2s ease;
 }
 
 @media screen and (max-width: 767px) {
@@ -59,7 +51,8 @@ a{
 .header{
     width: 100%;
     height: 60px;
-    background-color: #77ACF1;
+    background-color: #424242;
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 
 .header-wrap{
@@ -71,26 +64,24 @@ a{
 .title{
     display: inline-block;
     position: absolute;
-    top: 50%;
+    top: 47%;
     left: 20px;
     transform: translate(0, -50%);
-    font-weight: 700;
-    font-size: 22px;
-}
-
-.title>a{
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    white-space: nowrap;
+    padding: 3px;
     color: #fff;
 }
 
+.title>h2{
+    display: inline-block;
+    font-size: 20px;
+}
+
+
 @media screen and (max-width: 767px) {
     .title{ 
-        left: 20px; 
+        left: 10px; 
         transform: translate(0, -50%); 
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
@@ -101,7 +92,7 @@ a{
     position: relative;
     max-width: 1080px;
     min-height: calc(100vh - 120px);
-    padding: 30px 0;
+    padding: 10px 0;
 }
 
 @media screen and (max-width: 1080px) {
@@ -253,7 +244,7 @@ a{
 .post-list>li>a{
     position: relative;
     display: inline-block;
-    padding: 10px 5px;
+    padding: 13px 6px;
     width: 100%;
     height: 100%;
 }
@@ -283,6 +274,15 @@ a{
     text-align: right;
 }
 
+.MuiPagination-root{
+    margin: 20px 0 0 0;
+}
+
+.MuiPagination-root>ul{
+    width: 400px !important;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 767px) {
     .post-list>li>a>span{     
         font-size: 15px;
@@ -299,24 +299,27 @@ a{
 }
 
 @media screen and (max-width: 400px) {
-    .post-list>li>a>span{     
-        font-size: 13px;
-        
-    }
+
     .list-title{
         width: 75%;
     }
     .list-nic{ 
         position: absolute;
-        top: 2px; right: 0;
+        top: 6px; right: 0;
+        font-size: 12px !important;
         text-align: center;
         width: 25%;
     }
     .list-date{
         position: absolute;
-        bottom: 2px; right: 0;
+        bottom: 6px; right: 0;
+        font-size: 12px !important;
         text-align: center;
         width: 25%;
+    }
+    .MuiPagination-root>ul{
+        width: 100% !important;
+        margin: 0 auto;
     }
 
 }
@@ -395,7 +398,7 @@ a{
     }
 
     .post-content{
-        height: calc(100vh - 245px);
+        min-height: calc(100vh - 245px);
         padding: 12px;
     }
     .post-title{
@@ -521,8 +524,9 @@ a{
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 300px;
+    width: 250px;
+    height: 150px;
+    text-align: center;
 }
 
 .subtitle{
@@ -534,77 +538,21 @@ a{
     text-align: center;
 }
 
-#chk-passwd{
+.input-wrap, .btn-wrap{
     display: block;
-    position: absolute;
-    top: 45%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 35px;
-    outline: 0;
-    border-radius: 3px;
-    text-align: center;
-    border: 1px solid #787A91;
 }
 
-#chk-pwBtn{
+.btn-wrap{
     position: absolute;
     bottom: 0; left: 0;
-    display: block;
     width: 100%;
-    height: 40px;
-    margin: 0;
-    font-size: 17px;
-    border-radius: 3px;
-    color: #fff;
-    border: none;
-    background-color: #96BAFF;
-    outline: 0;
-    cursor: pointer;
-    transition: 0.3s ease;
+    text-align: center;
 }
 
-#chk-pwBtn:hover{
-    background-color: #7C83FD;
+#chk-passwd{
+    text-align: center;
 }
 
-@media screen and (max-width: 767px){
-
-    .usercheck-wrap{
-        display: inline-block;
-        position: relative;
-        top: 0; left: 0;
-        transform: none;
-        width: 100%;
-        height: calc(100vh - 175px);
-    }
-    .subtitle{
-        display: block;
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        font-size: 27px;
-        color: #787A91;
-        text-align: center;
-    } 
-    #chk-passwd{
-        display: block;
-        position: absolute;
-        top: 45%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 50%;
-        height: 40px;
-        outline: 0;
-        border-radius: 3px;
-        text-align: center;
-        border: 1px solid #787A91;
-    }   
-    #chk-pwBtn{
-        position: absolute;
-        bottom: 0; left: 0;
-    }
-
-}
 
 /* --------------- Footer --------------- */
 .footer{

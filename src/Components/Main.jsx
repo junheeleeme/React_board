@@ -8,22 +8,23 @@ import UserCheck from "./board/UserCheck";
 import Intro from "./Intro";
 import Topmenu from "./Topmenu";
 import boardImg from "../images/board.png";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, useLocation } from "react-router-dom";
 import axios from "axios";
 
 
 const Main = (() => {
-
-    const [post, setPost] = useState([]);
     const [nowload, setNowload] = useState(true);
-    const [total, setTotal] = useState(true);
+    const [post, setPost] = useState([]);
+    const [postCnt, setPostCnt] = useState(0);
+
+    
 
     useEffect(()=>{
 
         axios.get('/post/list')
-            .then((res) => {          //post[0] : 포스트
+            .then((res) => {            //post[0] : 포스트
                 setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
-                setTotal(res.data[1]);
+                setPostCnt(res.data[1].count);
                 setNowload(false);
             }).catch((err) => {
                 console.log(err);
@@ -38,7 +39,7 @@ const Main = (() => {
         axios.get('/post/list')
             .then((res) => {            //post[0] : 포스트
                 setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
-                setTotal(res.data[1]);
+                setPostCnt(res.data[1]);
                 setNowload(false);
             }).catch((err) => {
                 console.log(err);
@@ -62,7 +63,7 @@ const Main = (() => {
                     <Route path="/" exact={true} component={Intro}/>
 
                     <Route path="/" exact>
-                        <Link to="/list" className="goBoardBtn">
+                        <Link to="/list/1" className="goBoardBtn">
                         <img className="boardImg" src={boardImg} alt="boardImg" />
                         <p className="goBoardTxt">게시판으로 이동</p>
                         </Link>
@@ -81,9 +82,9 @@ const Main = (() => {
                     {/* Switch-Route -> List / Write / Post / Edit */}
 
                     <Switch>
-                        <Route path="/list" exact>
+                        <Route path="/list/:no" exact={false}>
                             <ul className="post-list">  
-                                <List post={post}/>
+                                <List post={post} postCnt={postCnt}/>
                             </ul>
                         </Route>
                         <Route path="/post/write" exact={true}> 
