@@ -7,6 +7,7 @@ const List = ({post, postCnt}) => {
     const his = useHistory();
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(Number(params.no));
+    //전체 포스팅 중 params(=currentPage)로 지금 페이지에 랜더링될 게시글만(10개) state에 저장
     const [renderPost, setRenderPost] = useState( params.no > 1 ? post.slice((params.no-1)*10, params.no*10) : post.slice(0, params.no*10) );
     const [pagiCnt, setPagiCnt] = useState( postCnt > 10 ? Number((postCnt/10)+1.0).toFixed(0) : 1 );
     

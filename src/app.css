@@ -16,6 +16,7 @@ a{
     position: relative;
     width: 100vw;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     /* mobile viewport bug fix */
     padding-bottom: 60px; 
 }
