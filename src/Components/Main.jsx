@@ -63,7 +63,7 @@ const Main = (() => {
                     <Route path="/" exact={true} component={Intro}/>
 
                     <Route path="/" exact>
-                        <Link to="/list/1" className="goBoardBtn">
+                        <Link to="/list" className="goBoardBtn">
                         <img className="boardImg" src={boardImg} alt="boardImg" />
                         <p className="goBoardTxt">게시판으로 이동</p>
                         </Link>
@@ -82,7 +82,7 @@ const Main = (() => {
                     {/* Switch-Route -> List / Write / Post / Edit */}
 
                     <Switch>
-                        <Route path="/list/:no" exact={false}>
+                        <Route path="/list" exact={false}>
                             <ul className="post-list">  
                                 <List post={post} postCnt={postCnt}/>
                             </ul>
