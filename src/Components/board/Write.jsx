@@ -2,11 +2,25 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import { TextField, Button } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
+const btnStyle = makeStyles({
+    button: {
+        border : 'none',
+        background : '#42a5f5',
+        color : '#2196f3',
+        height : 45,
+        fontSize : 16,
+        color : '#fff',
+        "&:hover" : {
+            background : "#1e88e5"
+        }
+    }
+});
 
 const Write = ({listUpdate}) => {
     const his = useHistory();
+    const { button } = btnStyle(); //makeStyles
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [nic, setNic] = useState("");
@@ -24,10 +38,10 @@ const Write = ({listUpdate}) => {
     });
 
 
-    const oncTitle = ((e) =>{ setTitle(e.target.value); });
-    const oncBody = ((e) =>{ setBody(e.target.value); });
-    const oncNic = ((e) =>{ setNic(e.target.value.replace(/(\s*)/g, "")); });
-    const oncPass = ((e) =>{ setPasswd(e.target.value.replace(/(\s*)/g, "")); });
+    const oncTitle = (e) =>{ setTitle(e.target.value); };
+    const oncBody = (e) =>{ setBody(e.target.value); };
+    const oncNic = (e) =>{ setNic(e.target.value.replace(/(\s*)/g, "")); };
+    const oncPass = (e) =>{ setPasswd(e.target.value.replace(/(\s*)/g, "")); };
 
 
     const onSubmit = ((e)=>{
@@ -36,31 +50,31 @@ const Write = ({listUpdate}) => {
         if( title_valid() && body_valid() && nic_valid() && passwd_valid() ){
 
             console.log("Success!");
-            // axios.post('/post/write/new', {
-            //         title : title,
-            //         body : body,
-            //         nic : nic,
-            //         passwd : passwd.toString()
-            // }).then((res)=>{
+            axios.post('/post/write/new', {
+                    title : title,
+                    body : body,
+                    nic : nic,
+                    passwd : passwd.toString()
+            }).then((res)=>{
 
-            //     if(res.status === 200){// 글 DB 저장완료
+                if(res.status === 200){// 글 DB 저장완료
 
-            //         listUpdate();
-            //         axios.post('/post', { //작성한 글로 이동하기 위해 글 id조회
-            //             title : title,
-            //             body : body,
-            //             nic : nic,
-            //         }).then((res)=>{
+                    listUpdate();
+                    axios.post('/post', { //작성한 글로 이동하기 위해 글 id조회
+                        title : title,
+                        body : body,
+                        nic : nic,
+                    }).then((res)=>{
                         
-            //             his.replace(`/post?no=${res.data}`);
-            //         }).catch(err=>{
-            //             console.log(err);
-            //         });
-            //     };
+                        his.replace(`/post?no=${res.data}`);
+                    }).catch(err=>{
+                        console.log(err);
+                    });
+                };
 
-            // }).catch(err=>{
-            //     console.log(err);
-            // });
+            }).catch(err=>{
+                console.log(err);
+            });
 
         }
     });
@@ -86,7 +100,7 @@ const Write = ({listUpdate}) => {
     }
 
     const nic_valid = () => {
-        if(nic.length > 2){
+        if(nic.length > 1){
             setNicErr({
                 err : false,
                 msg : ""
@@ -164,7 +178,7 @@ const Write = ({listUpdate}) => {
                 />
 
             </div>
-                <Button onClick={onSubmit} id="writeBtn" variant="contained" fullWidth>글쓰기</Button>
+                <Button onClick={onSubmit} className={button} id="writeBtn" variant="contained" fullWidth>글쓰기</Button>
             </form>
         </>
     )

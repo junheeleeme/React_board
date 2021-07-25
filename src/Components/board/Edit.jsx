@@ -1,18 +1,38 @@
-import React, { useState, useRef, useEffect } from 'react'
-import ReactDom from 'react-dom'
+import React, { useState, useRef, useEffect } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
+import { TextField, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+
+const btnStyle = makeStyles({
+    button: {
+        border : 'none',
+        background : '#42a5f5',
+        color : '#2196f3',
+        height : 45,
+        fontSize : 16,
+        color : '#fff',
+        "&:hover" : {
+            background : "#1e88e5"
+        }
+    }
+});
+
 
 const Edit = ({listUpdate, post}) => {
     const his = useHistory();
+    const { button } = btnStyle(); //makeStyles
     const { search } = useLocation();
     const { no } = queryString.parse(search);
     
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [titleErr, setTitleErr] = useState(false);
+    const [bodyErr, setBodyErr] = useState(false);
+    
     const titleInput = useRef(null);
     const bodyInput = useRef(null);
-    const [title, setTitle] = useState();
-    const [body, setBody] = useState();
 
     useEffect(()=>{
         post.map((p)=>{
@@ -25,18 +45,13 @@ const Edit = ({listUpdate, post}) => {
         })
     }, []);
 
-    const changeInput = ((e) =>{
-        if( e.target.id === "title-input"){
-            setTitle(e.target.value);
-        }else{
-            setBody(e.target.value);
-        }
-    })
+    const oncTitle = (e) =>{ setTitle(e.target.value) };
+    const oncBody = (e) =>{ setBody(e.target.value) };
+
 
     const onSubmit = ((e)=>{
-
         e.preventDefault();
-        
+
         if( title_valid() && body_valid() ){
             
             axios.post(`/post/update?no=${no}`, {
@@ -75,9 +90,22 @@ const Edit = ({listUpdate, post}) => {
     return(
         <>
             <form action="/" id="edit-form">
-                <input ref={titleInput} type="text" id="title-input" placeholder="글 제목" onChange={changeInput}/>
-                <textarea ref={bodyInput} name="body-input" id="body-input" placeholder="내용" onChange={changeInput} />
-                <button type="submit" id="writeBtn" onClick={onSubmit}>수정하기</button>
+                
+                <div className="edit-title-wrap">
+                    <TextField inputRef={titleInput} onChange={oncTitle} id="outlined-full-width" className="title-input" label="제목" 
+                        style={{ margin: 0 }} fullWidth margin="normal" InputLabelProps={{shrink: true,}} variant="outlined"
+                        error={titleErr}
+                    />
+                </div>
+
+                <div className="edit-body-wrap">
+                    <TextField inputRef={bodyInput} onChange={oncBody} id="outlined-multiline-static" className="body-input" label="내용"
+                    multiline fullWidth={true} InputLabelProps={{shrink: true,}} variant="outlined" 
+                    error={bodyErr}
+                    />
+                </div>  
+                
+                <Button onClick={onSubmit} className={button} id="editBtn" variant="contained" fullWidth>수정하기</Button>
             </form>
         </>
     )

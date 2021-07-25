@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch, useLocation } from "react-router-dom";
 import Load from "./Load";
 import List from "./board/List";
 import Post from "./board/Post";
@@ -7,17 +8,31 @@ import Edit from "./board/Edit";
 import UserCheck from "./board/UserCheck";
 import Intro from "./Intro";
 import Topmenu from "./Topmenu";
-import boardImg from "../images/board.png";
-import { BrowserRouter as Router, Route, Link, Switch, useLocation } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import boardImg from '../images/boardImg.png';
 import axios from "axios";
 
 
+const btnStyle = makeStyles({
+    button: {
+        border : 'none',
+        background : '#637bfe',
+        color : '#fff',
+        height : 50,
+        fontSize : 16,
+        "&:hover" : {
+            background : "#3d5afe"
+        }
+    }
+});
+
+
 const Main = (() => {
+    const { button } = btnStyle();
     const [nowload, setNowload] = useState(true);
     const [post, setPost] = useState([]);
     const [postCnt, setPostCnt] = useState(0);
-
-    
 
     useEffect(()=>{
 
@@ -63,9 +78,10 @@ const Main = (() => {
                     <Route path="/" exact={true} component={Intro}/>
 
                     <Route path="/" exact>
-                        <Link to="/list/1" className="goBoardBtn">
-                        <img className="boardImg" src={boardImg} alt="boardImg" />
-                        <p className="goBoardTxt">게시판으로 이동</p>
+                        <Link to="/list/1" className="start-Btn">
+                            <Fab variant="extended" className={button} aria-label="Add" >
+                                <img className="start-btnImg" src={boardImg} alt="Board-Img" />게시판으로 이동
+                            </Fab>
                         </Link>
                     </Route>
 

@@ -63,6 +63,9 @@ a{
     transform: translate(0, -50%);
     padding: 3px;
     color: #fff !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .title>h2{
@@ -73,9 +76,11 @@ a{
 
 @media screen and (max-width: 767px) {
     .title{ 
-        left: 10px; 
-        transform: translate(0, -50%); 
-        font-size: 14px;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+    .title>h2{
+        font-size: 18px;
     }
 }
 
@@ -138,26 +143,12 @@ a{
     font-weight: 100;
 }
 
-.goBoardBtn{
+.start-Btn{
     display: inline-block;
     position: absolute;
-    bottom: 10%;
+    bottom: 23%;
     left: 50%;
     transform: translate(-50%, 0%);
-    width: 340px;
-    height: 210px;
-    padding: 20px 0;
-    font-size: 15px;
-    font-weight: bold;
-    color: #333333;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    transition: 0.2s ease;
-}
-
-.goBoardBtn:hover{
-    background: #e3f2fd;
 }
 
 .boardImg{
@@ -167,9 +158,10 @@ a{
     font-size: 17px;
 }
 
-.goBoardTxt{
-    font-size: 22px;
-    margin-top: 20px;
+.start-btnImg{
+    width: 27px;
+    height: 27px;
+    margin-right: 5px;
 }
 
 
@@ -185,26 +177,8 @@ a{
         font-size: 30px;
         margin: 0 15px;
     }
-
-    .goBoardBtn{
-        bottom: 10%;
-        padding: 25px 0;
-        width: 300px;
-        height: 190px;
-    }
-    
-    .boardImg{
-        display: block;
-        width: 100px;
-        height: 100px;
-        font-size: 17px;
-    }
-    
-    .goBoardTxt{
-        font-size: 18px;
-        margin-top: 15px;
-    }
 }
+
 @media screen and (max-width: 615px) {
     .img-wrap>span{ margin: 0 10px; }
 }
@@ -214,9 +188,9 @@ a{
     .img-wrap>img{ transform: scale(0.6); }
     .img-wrap>span{ 
         margin: 0 -20px;
-        font-size: 25px; }
+        font-size: 25px; 
     }
-
+}
 
 /* ---------- List ---------- */
 
@@ -417,14 +391,6 @@ a{
 
 /* ---------- Write ---------- */
 
-#edit-form{
-    height: calc(100% - 45px);
-}
-
-#edit-form>.body-input{
-    height: calc(100vh - 325px) !important;
-    margin-bottom: 5px;
-}
 
 .MuiOutlinedInput-input{
     padding: 12px !important;
@@ -461,12 +427,6 @@ a{
     margin-left: 10px;
 }
 
-#writeBtn{
-    font-size: 16px;
-    height: 45px;
-    cursor: pointer;
-}
-
 legend{
     margin: 0 !important;
 }
@@ -488,6 +448,26 @@ legend{
         float: right;
     }
 
+}
+
+/* ---------- Edit ---------- */
+
+.edit-title-wrap{
+    height: 45px;
+    margin-bottom: 10px;
+}
+
+.edit-body-wrap{
+    height: calc(100vh - 310px);
+    margin-bottom: 10px;
+}
+
+.edit-body-wrap div, .edit-body-wrap textarea{
+    height: 100% !important;
+}
+
+#editBtn{
+    height: 45px;
 }
 
 /* ---------- UserCheck ---------- */
@@ -556,7 +536,7 @@ legend{
 @media screen and (max-width: 767px){
 
     .footerTxt{
-        font-size: 12px;
+        font-size: 13px;
     }
 
 }
