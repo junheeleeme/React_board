@@ -40,7 +40,7 @@ const List = ({post, postCnt}) => {
                     )
                 }
             </ul>
-            <Pagination count={pagiCnt} color="primary" page={currentPage} onChange={pagiHandler}/>
+            <Pagination count={pagiCnt} color="info" page={currentPage} onChange={pagiHandler}/>
         </>
     )
 }

@@ -9,7 +9,6 @@
 
 a{
     text-decoration: none;
-    color: #000;
 }
 
 #root{
@@ -50,13 +49,6 @@ a{
 
 /* --------------- Header --------------- */
 
-.header{
-    width: 100%;
-    height: 60px;
-    background-color: #424242;
-    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-}
-
 .header-wrap{
     position: relative;
     max-width: 1080px;
@@ -70,7 +62,7 @@ a{
     left: 20px;
     transform: translate(0, -50%);
     padding: 3px;
-    color: #fff;
+    color: #fff !important;
 }
 
 .title>h2{
@@ -103,11 +95,6 @@ a{
     }
 }
 
-@media screen and (max-width: 767px) {
-    .main{
-        padding: 10px;
-    }
-}
 
 /* ---------- Intro ---------- */
 
@@ -123,6 +110,7 @@ a{
     transform: translate(-50%, 0);
     width: 95%;
     font-size: 22px; 
+    color: #333333;
 }
 
 .img-wrap{
@@ -161,15 +149,15 @@ a{
     padding: 20px 0;
     font-size: 15px;
     font-weight: bold;
-    color: #787A91;
+    color: #333333;
     text-align: center;
-    background-color: #EEEEEE;
+    background-color: #f5f5f5;
     border-radius: 5px;
     transition: 0.2s ease;
 }
 
 .goBoardBtn:hover{
-    background: #DBE6FD;
+    background: #e3f2fd;
 }
 
 .boardImg{
@@ -250,6 +238,7 @@ a{
     padding: 13px 6px;
     width: 100%;
     height: 100%;
+    color: #333333;
 }
 
 .post-list>li>a>span{
@@ -340,8 +329,9 @@ a{
 
 .post-title-wrap, .post-content{
     position: relative;
-    background-color: #f2f2f2;
+    background-color: #e3f2fd;
     border-radius: 5px;
+    color: #333333;
 }
 
 .post-title-wrap{
@@ -360,6 +350,8 @@ a{
     margin: 0 0 10px 0;
     padding-left: 10px;
     font-size: 18px;
+    font-weight: normal;
+    color: #333333;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -370,6 +362,7 @@ a{
     font-size: 14px;
     width: 13%;
     padding: 0 10px 0 0;
+    color: #333333;
     text-align: right;
     vertical-align: middle;
     text-overflow: ellipsis;
@@ -388,7 +381,7 @@ a{
 .post-content{
     display: inline-block;
     width: 100%;
-    min-height: calc(100vh - 285px);
+    min-height: calc(100vh - 255px);
     padding: 15px;
     line-height: 1.5;
 }
@@ -424,101 +417,75 @@ a{
 
 /* ---------- Write ---------- */
 
-#write-form{
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: calc(100% - 60px);
-}
-
 #edit-form{
     height: calc(100% - 45px);
 }
 
-#edit-form>#body-input{
+#edit-form>.body-input{
     height: calc(100vh - 325px) !important;
     margin-bottom: 5px;
 }
 
-#title-input, #body-input, #writeBtn, #pw-input, #nic-input{
-    display: block;
-    width: 100%;
-    resize: none;
-    outline: 0;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    font-size: 17px;
-    padding: 7px;
+.MuiOutlinedInput-input{
+    padding: 12px !important;
+}
+.MuiOutlinedInput-multiline{
+    padding: 15px 0 !important;
 }
 
-#title-input{
-    height: 35px;
+.title-wrap{
+    height: 45px;
     margin-bottom: 10px;
 }
 
-#body-input{
+.title-wrap input{
+    padding: 13px !important;
+}
+
+.body-wrap{
     display: inline-block;
+    width: 100%;
     height: calc(100vh - 380px);
+}
+.body-wrap div, .body-wrap textarea{
+    height: 100% !important;
 }
 
 .user-wrap{
     width: 100%;
-    height: 35px;
-    margin: 10px 0 15px 0;
+    height: 65px;
+    margin: 10px 0;
     text-align: right;
 }
-
-.user-wrap>span{
-    padding-left: 15px;
-}
-
-#nic-input{
-    display: inline-block;
-    width: 100px;
-    height: 100%;
-    padding-left: 10px;
-}
-
-#pw-input{
-    display: inline-block;
-    width: 80px;
-    height: 100%;
+.user-wrap>div:last-child{
     margin-left: 10px;
 }
 
 #writeBtn{
-    font-size: 17px;
+    font-size: 16px;
     height: 45px;
-    padding: 3px;
-    vertical-align: middle;
     cursor: pointer;
-    border: 1px solid #d9d9d9;
-    background-color: #d9d9d9;
+}
+
+legend{
+    margin: 0 !important;
 }
 
 @media screen and (max-width: 767px){
 
-    #write-form{
-        height: calc(100% - 45px);
+    .user-wrap{
+        text-align: center;
     }
-    .user-wrap>span{
-        font-size: 16px;
-        padding-left: 15px;
+    .user-wrap>div>div{
+        margin: 0 !important;
     }
-    #nic-input{
-        padding-left: 5px;
+    .nic-input {
+        width: 48%;
+        float: left;
     }
-    
-    #pw-input{
-        margin-left: 5px;
-    }
-
-    #body-input{
-        height: calc(100vh - 340px);
-    }
-    #edit-form>#body-input{
-        height: calc(100vh - 285px) !important;
-        margin-bottom: 5px;
+    .pw-input{
+        width: 48%;
+        float: right;
     }
 
 }
@@ -566,7 +533,7 @@ a{
     width: 100%;
     height: 60px;
     /*background-color: #A2DBFA;*/
-    background-color: #EEEEEE;
+    background-color: #90caf9;
 }
 
 .footer-wrap{
@@ -583,7 +550,7 @@ a{
     text-align: center;
     width: 100%;
     font-size: 14px;
-    color: #B2B1B9;
+    color: #fff;
 }
 
 @media screen and (max-width: 767px){
