@@ -36,10 +36,19 @@ const Main = (() => {
 
     useEffect(()=>{
 
+        console.log(" _   _  _        _                _ " + '\n' +
+                    "| | | |(_)      (_)              (_)" +'\n' +
+                    "| |_| | _        _  _   _  _ __   _ " +'\n'+
+                    "|  _  || |      | || | | || '_ \\ | |" +'\n' +
+                    "| | | || | _    | || |_| || | | || |" +'\n'+
+                    "\\_| |_/|_|(_)   | | \\__,_||_| |_||_|" +'\n' +
+                    "               _/ |                 " +'\n'+
+                    "              |__/                  ");
+
         axios.get('/post/list')
-            .then((res) => {            //post[0] : 포스트
-                setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
-                setPostCnt(res.data[1].count);
+            .then((res) => {            
+                setPost(res.data[0]);           //post[0] : 포스트
+                setPostCnt(res.data[1].count);  //post[1] : 전체 포스팅 개수
                 setNowload(false);
             }).catch((err) => {
                 console.log(err);

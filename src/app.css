@@ -196,7 +196,7 @@ a{
 
 .post-list{
     display: block;
-    position: relative;
+    min-height: calc(100vh - 280px);
     width: 100%;
     list-style: none;
     padding-left: 0;
@@ -209,7 +209,7 @@ a{
 .post-list>li>a{
     position: relative;
     display: inline-block;
-    padding: 13px 6px;
+    padding: 12px 6px;
     width: 100%;
     height: 100%;
     color: #333333;
@@ -241,9 +241,8 @@ a{
 }
 
 .MuiPagination-root{
-    position: absolute;
-    bottom: 20px; left: 0;
     width: 100%;
+    margin: 20px auto;
 }
 
 .MuiPagination-root>ul{
@@ -323,8 +322,8 @@ a{
     width: 87%;
     margin: 0 0 10px 0;
     padding-left: 10px;
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 17px;
+    font-weight: 600;
     color: #333333;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -356,7 +355,8 @@ a{
     display: inline-block;
     width: 100%;
     min-height: calc(100vh - 255px);
-    padding: 15px;
+    padding: 10px;
+    font-size: 17px;
     line-height: 1.5;
 }
 
@@ -371,7 +371,6 @@ a{
 
     .post-content{
         min-height: calc(100vh - 245px);
-        padding: 12px;
     }
     .post-title{
         width: 75%;
