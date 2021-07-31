@@ -22,6 +22,19 @@ a{
 
 /* --------------- Common --------------- */
 
+.mount{
+    animation: 0.5s ease-in-out loadEffect;
+}
+
+@keyframes loadEffect {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 /* --------- top-menu ---------*/
 
 .top-menu{

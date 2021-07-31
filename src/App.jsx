@@ -11,7 +11,7 @@ const App = () => {
         <>
             {/* <BrowserRouter basename="/simple-react-board">  */}
             <BrowserRouter basename="/">
-                <Header/>                
+                <Header/>              
                     <Main/>
                 <Footer/>
             </BrowserRouter>

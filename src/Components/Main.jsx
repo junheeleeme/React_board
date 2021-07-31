@@ -14,7 +14,7 @@ import Fab from '@material-ui/core/Fab';
 import boardImg from '../images/boardImg.png';
 import axios from "axios";
 import { connect } from 'react-redux';
-import { toggleLoader } from '../redux/index';
+import { toggleLoader, toggleMount } from '../redux/index';
 
 
 const btnStyle = makeStyles({ //Material-UI 
@@ -30,7 +30,7 @@ const btnStyle = makeStyles({ //Material-UI
     }
 });
 
-const Main = (({isloader, toggleLoader}) => {
+const Main = (({isloader, isMount, toggleLoader, toggleMount}) => {
 
     const { button } = btnStyle();
     const [post, setPost] = useState([]);
@@ -53,6 +53,7 @@ const Main = (({isloader, toggleLoader}) => {
                 setPostCnt(res.data[1].count);  //post[1] : 전체 포스팅 개수
                 
                 toggleLoader(false);
+                
 
             }).catch((err) => {
                 console.log(err);
@@ -61,18 +62,19 @@ const Main = (({isloader, toggleLoader}) => {
     }, []);
 
     const listUpdate = () =>{
-        setNowload(true);
+        toggleMount('unmount');
         console.log("Second Rendering");
         axios.get('/post/list')
             .then((res) => {            //post[0] : 포스트
                 setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
                 setPostCnt(res.data[1].count);
-                setNowload(false);
+                toggleMount('mount');
             }).catch((err) => {
                 console.log(err);
-                setNowload(true);
+                toggleMount('unmount');
             });
     }
+
     
     if(isloader){ //로딩중
         return(
@@ -83,7 +85,7 @@ const Main = (({isloader, toggleLoader}) => {
     }else{      //로딩완료
         return(
             <>
-            <article className="main">
+            <article className="main" >
                 
                 <Route path="/" exact={true} component={Intro}/>
 
@@ -109,7 +111,7 @@ const Main = (({isloader, toggleLoader}) => {
 
                 <Switch>
                     <Route path="/list/:no" exact={false}>
-                        <List post={post} postCnt={postCnt}/>
+                        <List post={post} postCnt={postCnt}/> 
                     </Route>
                     <Route path="/post/write" exact={true}> 
                         <Write listUpdate={listUpdate}/>
@@ -134,10 +136,11 @@ const Main = (({isloader, toggleLoader}) => {
     }
 })
 
-const mapStateToProps = ({loader}) => ({
-    isloader : loader.isLoader
+const mapStateToProps = ({ loader }) => ({
+    isloader : loader.isLoader,
+    isMount : loader.isMount
 })
 
-const mapDispatchToProps = ({ toggleLoader })
+const mapDispatchToProps = ({ toggleLoader, toggleMount })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

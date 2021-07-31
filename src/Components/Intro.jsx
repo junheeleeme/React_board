@@ -8,7 +8,7 @@ const Intro = ()=> {
 
     return(
         <>
-            <div className="intro">
+            <div className="intro mount">
                 <h3 className="introTxt">리액트와 Node.js, MongoDB를 연동한 간단한 텍스트 게시판입니다. </h3>
                 <div className="img-wrap">
                     <img className="reactIcon" src={reactIcon} alt="react Icon" />

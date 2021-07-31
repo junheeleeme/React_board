@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { toggleMount } from '../../redux';
+import { connect } from 'react-redux';
 
 const btnStyle = makeStyles({
     button: {
@@ -18,7 +20,7 @@ const btnStyle = makeStyles({
     }
 });
 
-const Write = ({listUpdate}) => {
+const Write = ({listUpdate, isMount, toggleMount}) => {
     const his = useHistory();
     const { button } = btnStyle(); //makeStyles
     const [title, setTitle] = useState("");
@@ -134,7 +136,7 @@ const Write = ({listUpdate}) => {
 
     return(
         <>
-            <form action="/">
+            <form action="/" className="mount">
         
                 <div className="title-wrap">
                     <TextField onChange={oncTitle} id="outlined-full-width" className="title-input" label="제목" 
@@ -184,4 +186,10 @@ const Write = ({listUpdate}) => {
     )
 }
 
-export default Write;
+const mapStateToProps = ({loader}) => ({
+    isMount : loader.isMount
+});
+
+const mapDispatchToProps = ({ toggleMount })
+
+export default connect(mapStateToProps, mapDispatchToProps)(Write);

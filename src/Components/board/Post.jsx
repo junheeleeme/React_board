@@ -29,7 +29,7 @@ const Post = ({post})=> {
 
     return(
         <>
-            <div className="post-wrap">
+            <div className={`post-wrap mount`}>
                 <div className="post-title-wrap">
                     <h2 className="post-title">{title}</h2>
                     <span className="post-date">{date}</span>
