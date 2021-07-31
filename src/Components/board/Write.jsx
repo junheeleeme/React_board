@@ -3,8 +3,6 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { toggleMount } from '../../redux';
-import { connect } from 'react-redux';
 
 const btnStyle = makeStyles({
     button: {
@@ -20,7 +18,7 @@ const btnStyle = makeStyles({
     }
 });
 
-const Write = ({listUpdate, isMount, toggleMount}) => {
+const Write = ({ listUpdate }) => {
     const his = useHistory();
     const { button } = btnStyle(); //makeStyles
     const [title, setTitle] = useState("");
@@ -186,10 +184,5 @@ const Write = ({listUpdate, isMount, toggleMount}) => {
     )
 }
 
-const mapStateToProps = ({loader}) => ({
-    isMount : loader.isMount
-});
 
-const mapDispatchToProps = ({ toggleMount })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Write);
+export default Write;

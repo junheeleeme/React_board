@@ -30,7 +30,7 @@ const btnStyle = makeStyles({ //Material-UI
     }
 });
 
-const Main = (({isloader, isMount, toggleLoader, toggleMount}) => {
+const Main = (({isloader, toggleLoader}) => {
 
     const { button } = btnStyle();
     const [post, setPost] = useState([]);
@@ -62,16 +62,16 @@ const Main = (({isloader, isMount, toggleLoader, toggleMount}) => {
     }, []);
 
     const listUpdate = () =>{
-        toggleMount('unmount');
+        toggleLoader(true);
         console.log("Second Rendering");
         axios.get('/post/list')
             .then((res) => {            //post[0] : 포스트
                 setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
                 setPostCnt(res.data[1].count);
-                toggleMount('mount');
+                toggleLoader(false);
             }).catch((err) => {
                 console.log(err);
-                toggleMount('unmount');
+                toggleLoader(true);
             });
     }
 
@@ -137,10 +137,9 @@ const Main = (({isloader, isMount, toggleLoader, toggleMount}) => {
 })
 
 const mapStateToProps = ({ loader }) => ({
-    isloader : loader.isLoader,
-    isMount : loader.isMount
+    isloader : loader.isLoader
 })
 
-const mapDispatchToProps = ({ toggleLoader, toggleMount })
+const mapDispatchToProps = ({ toggleLoader })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

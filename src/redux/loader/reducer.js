@@ -19,14 +19,7 @@ const loaderReducer = (state = initialState, action) => {
             }
 
         }
-        case TOGGLE_MOUNT : {
 
-            return {
-                ...state,
-                isMount : action.data
-            }
-
-        }
         default : return state
         
     }
