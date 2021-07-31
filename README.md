@@ -7,7 +7,6 @@
 * Bcrypt 암호화 사용
 
 
-## Screen
+## Initial Screen
 
-![SRB](https://user-images.githubusercontent.com/38034518/126201168-434ef918-a3fb-4090-946a-21be7a866363.png)
-![SRB-write](https://user-images.githubusercontent.com/38034518/126204090-f06e3b29-e0dd-4c8a-acc1-07a180f127c1.png)
+![srb_cover](https://user-images.githubusercontent.com/38034518/127012012-8a226e17-1a21-4756-b730-cce80f2957ef.png)

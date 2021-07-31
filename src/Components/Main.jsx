@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, useLocation } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import Load from "./Load";
 import List from "./board/List";
 import Post from "./board/Post";
@@ -9,12 +9,15 @@ import UserCheck from "./board/UserCheck";
 import Intro from "./Intro";
 import Topmenu from "./Topmenu";
 import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Fab from '@material-ui/core/Fab';
 import boardImg from '../images/boardImg.png';
 import axios from "axios";
+import { connect } from 'react-redux';
+import { toggleLoader } from '../redux/index';
 
 
-const btnStyle = makeStyles({
+const btnStyle = makeStyles({ //Material-UI 
     button: {
         border : 'none',
         background : '#637bfe',
@@ -27,10 +30,9 @@ const btnStyle = makeStyles({
     }
 });
 
+const Main = (({isloader, toggleLoader}) => {
 
-const Main = (() => {
     const { button } = btnStyle();
-    const [nowload, setNowload] = useState(true);
     const [post, setPost] = useState([]);
     const [postCnt, setPostCnt] = useState(0);
 
@@ -49,10 +51,11 @@ const Main = (() => {
             .then((res) => {            
                 setPost(res.data[0]);           //post[0] : 포스트
                 setPostCnt(res.data[1].count);  //post[1] : 전체 포스팅 개수
-                setNowload(false);
+                
+                toggleLoader(false);
+
             }).catch((err) => {
                 console.log(err);
-                setNowload(true);
             });
 
     }, []);
@@ -70,9 +73,8 @@ const Main = (() => {
                 setNowload(true);
             });
     }
-
     
-    if(nowload){ //로딩중
+    if(isloader){ //로딩중
         return(
             <>
                 <Load/>
@@ -83,50 +85,48 @@ const Main = (() => {
             <>
             <article className="main">
                 
+                <Route path="/" exact={true} component={Intro}/>
 
-                    <Route path="/" exact={true} component={Intro}/>
+                <Route path="/" exact>
+                    <Link to="/list/1" className="start-Btn">
+                        <Fab variant="extended" className={button} aria-label="Add" >
+                            <img className="start-btnImg" src={boardImg} alt="Board-Img" />게시판으로 이동
+                        </Fab>
+                    </Link>
+                </Route>
 
-                    <Route path="/" exact>
-                        <Link to="/list/1" className="start-Btn">
-                            <Fab variant="extended" className={button} aria-label="Add" >
-                                <img className="start-btnImg" src={boardImg} alt="Board-Img" />게시판으로 이동
-                            </Fab>
-                        </Link>
+                {/* Switch-Route -> Topmenu */}
+                <Switch> 
+                    <Route path="/list" exact={false}>
+                        <Topmenu/>
                     </Route>
+                    <Route path="/post" exact={false}>
+                        <Topmenu listUpdate={listUpdate}/>
+                    </Route>
+                </Switch>
+                
+                {/* Switch-Route -> List / Write / Post / Edit */}
 
-                    {/* Switch-Route -> Topmenu */}
-                    <Switch> 
-                        <Route path="/list" exact={false}>
-                            <Topmenu/>
-                        </Route>
-                        <Route path="/post" exact={false}>
-                            <Topmenu listUpdate={listUpdate}/>
-                        </Route>
-                    </Switch>
-                    
-                    {/* Switch-Route -> List / Write / Post / Edit */}
-
-                    <Switch>
-                        <Route path="/list/:no" exact={false}>
-                            <List post={post} postCnt={postCnt}/>
-                        </Route>
-                        <Route path="/post/write" exact={true}> 
-                            <Write listUpdate={listUpdate}/>
-                        </Route>
-                        <Route path="/post/update/usercheck" exact={false}>
-                            <UserCheck action={'update'}/> 
-                        </Route>
-                        <Route path="/post/delete/usercheck" exact={false}>
-                            <UserCheck action={'delete'} listUpdate={listUpdate} /> 
-                        </Route>
-                        <Route path="/post/update" exact={false}>
-                            <Edit listUpdate={listUpdate} post={post}/> 
-                        </Route>
-                        <Route path="/post" exact={false}>
-                            <Post post={post}/>
-                        </Route>
-                    </Switch>                        
-                    
+                <Switch>
+                    <Route path="/list/:no" exact={false}>
+                        <List post={post} postCnt={postCnt}/>
+                    </Route>
+                    <Route path="/post/write" exact={true}> 
+                        <Write listUpdate={listUpdate}/>
+                    </Route>
+                    <Route path="/post/update/usercheck" exact={false}>
+                        <UserCheck action={'update'}/> 
+                    </Route>
+                    <Route path="/post/delete/usercheck" exact={false}>
+                        <UserCheck action={'delete'} listUpdate={listUpdate} /> 
+                    </Route>
+                    <Route path="/post/update" exact={false}>
+                        <Edit listUpdate={listUpdate} post={post}/> 
+                    </Route>
+                    <Route path="/post" exact={false}>
+                        <Post post={post}/>
+                    </Route>
+                </Switch>                        
 
             </article>
         </>
@@ -134,4 +134,10 @@ const Main = (() => {
     }
 })
 
-export default Main;
+const mapStateToProps = ({loader}) => ({
+    isloader : loader.isLoader
+})
+
+const mapDispatchToProps = ({ toggleLoader })
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
