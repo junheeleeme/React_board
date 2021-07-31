@@ -30,7 +30,7 @@ const UserCheck = ({listUpdate, action}) => {
                         axios.delete(`/post/delete?no=${no}`).then((res)=>{
                             if(res.status === 200){
                                 listUpdate();
-                                his.push('/list');
+                                his.push('/list/1');
                             }
                         }).catch(err=>{
                             console.log("UserCheck->delete");

@@ -9,8 +9,8 @@ const App = () => {
     
     return(
         <>
-            {/* <BrowserRouter basename="/simple-react-board">  */}
-            <BrowserRouter basename="/">
+            <BrowserRouter basename="/simple-react-board"> 
+            {/* <BrowserRouter basename="/"> */}
                 <Header/>              
                     <Main/>
                 <Footer/>
