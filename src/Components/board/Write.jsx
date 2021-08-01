@@ -134,7 +134,7 @@ const Write = ({ listUpdate }) => {
 
     return(
         <>
-            <form action="/" className="mount">
+            <form action="/" className="mount2">
         
                 <div className="title-wrap">
                     <TextField onChange={oncTitle} id="outlined-full-width" className="title-input" label="제목" 

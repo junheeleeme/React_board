@@ -1,47 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
+import { connect } from 'react-redux';
+import { currentSetpost } from '../../redux/index';
 
-
-const Post = ({post})=> {    
+const Post = ({ currentPost, currentSetpost })=> {
+    
+    const ele_body = useRef(null);
     const { search } = useLocation();
     const { no } = queryString.parse(search);
-    const [title, setTitle] = useState();
-    const [body, setBody] = useState();
-    const [date, setDate] = useState();
-    const [nic, setNic] = useState();
-    const ele_body = useRef(null);
 
+    console.log("search : " + search);
+    console.log("no : " + no);
 
     useEffect(()=>{
-        post.map((p)=>{
-
-            if(p._id === no){
-                setTitle(p.title);
-                setBody(p.body);
-                setNic(p.nicName);
-                ele_body.current.innerText = p.body;
-                setDate(p.createdAt.substr(0, 10));
-            };
-        })
-    }, []); 
+        currentSetpost(no);
+    }, []);
     
+    useEffect(()=>{
+        ele_body.current.innerText = currentPost[0].body;
+    }, [currentPost]);
 
     return(
         <>
-            <div className={`post-wrap mount`}>
-                <div className="post-title-wrap">
-                    <h2 className="post-title">{title}</h2>
-                    <span className="post-date">{date}</span>
-                    <span className="post-nic">{nic}</span>
-                </div>
-                
-                <div ref={ele_body} className="post-content"></div>
-            </div>
-        
+            {
+                currentPost.map((v, idx)=> 
+                    <div className={`post-wrap mount2`}>
+
+                        <div className="post-title-wrap">
+                            <h2 className="post-title">{v.title}</h2>
+                            <span className="post-date">{v.createdAt.substr(0, 10)}</span>
+                            <span className="post-nic">{v.nicName}</span>
+                        </div>
+
+                        <div ref={ele_body} className="post-content" ></div>
+
+                    </div>
+                )
+            }
         </>
     )
 
 }
 
-export default Post;
+const mapStateToProps = ({posts}) => ({
+    currentPost : posts.currentPost
+});
+
+const mapDispatchToProps = ({currentSetpost});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

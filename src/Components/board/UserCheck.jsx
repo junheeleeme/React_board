@@ -61,7 +61,7 @@ const UserCheck = ({listUpdate, action}) => {
 
     return(
         <> 
-            <div className="usercheck-wrap mount">
+            <div className="usercheck-wrap mount1">
                 <div className="input-wrap">
                     <TextField required onChange={onChange} onKeyPress={pressEnter} id="chk-passwd" type="password"  label="비밀번호 확인" defaultValue="" maxLength={6}  autoFocus={true} error={inputErr} helperText={errMsg}/>
                 </div>

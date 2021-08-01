@@ -1,6 +1,6 @@
 // types.js -> actions.js -> index.js
 
-import { TOGGLE_LOADER, TOGGLE_MOUNT } from "./types";
+import { TOGGLE_LOADER, } from "./types";
 
 export const toggleLoader = (bool) => ({
     type : TOGGLE_LOADER,

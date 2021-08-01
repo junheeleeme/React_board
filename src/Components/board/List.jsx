@@ -1,53 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { Pagination } from '@material-ui/lab';
+import {  Link } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import { Fab } from '@material-ui/core';
+import downArrow from '../../images/down-arrow24.png';
+import { connect } from "react-redux";
 
-
-const List = ({post, postCnt}) => {
-    const his = useHistory();
-    const params = useParams();
-    const [currentPage, setCurrentPage] = useState(Number(params.no)); //TypeScript의 필요성이..
-    const [renderPost, setRenderPost] = useState( currentPage === 1 ? post.slice(0, (postCnt%12)) : post.slice((currentPage-2)*12+(postCnt%12), (currentPage-1)*12+(postCnt%12)) );
-    const [pagiCnt, setPagiCnt] = useState( postCnt > 12 ? Number((postCnt/15)+1.0).toFixed(0) : 1 );
-
-
-    const pagiHandler = (e, value) =>{ //페이지 이동
-        his.push(`/list/${value}`);
-        setCurrentPage(value);
+const btnStyle = makeStyles({ //Material-UI 
+    button: {
+        border : 'none', background : '#8b8b8c', color : '#fff',
+        height : 50, margin: '0 auto',
+        padding: '0 22px 0 12px', fontSize : 16, transition: "0.3s ease",
+        "&:hover" : {
+            background : "#656566"
+        }
     }
+});
+
+const List = ({allPost, postTotal}) => {
+    
+    const { button } = btnStyle(); //style
+    const [current, setCurrent] = useState(1);
+    const [isVisible, setIsvisible] = useState(true); // 모든 글 랜더링 완료
+    const [renderPost, setRenderPost] = useState([]);
 
     useEffect(()=>{
-        setRenderPost( currentPage === 1 ? post.slice(0, (postCnt%12)) : post.slice((currentPage-2)*12+(postCnt%12), (currentPage-1)*12+(postCnt%12)) );
-        
-    }, [currentPage]);
+        setRenderPost( 
+            allPost.filter((v, idx) => idx < current*12 ) //로딩 글 개수 * 12
+        );
+        if(current*12 > postTotal){
+            setIsvisible(false);
+        }
+    }, [current]);
 
-
+    const onclickMoreBtn = () => {
+        if(isVisible){
+            setCurrent(current+1);
+        }
+    }
 
     return(
         <> 
-            <ul className="post-list mount">  
+            <ul className="post-list mount2">  
                 {
                     renderPost.map((post, idx) =>
                         <li key={ idx + post._id}>
                             <Link to={'/post?no='+post._id} >
-                                <span className="list-title">
-                                    {post.title}
-                                </span>
-                                <span className="list-nic">
-                                    {post.nicName}
-                                </span>
-                                <span className="list-date">
-                                    {post.createdAt.substr(0, 10)}
-                                </span>
+                                <span className="list-title">{post.title}</span>
+                                <span className="list-nic">{post.nicName}</span>
+                                <span className="list-date">{post.createdAt.substr(0, 10)}</span>
                             </Link>
                         </li>
                     )
                 }
             </ul>
 
-            <Pagination count={pagiCnt} color="info" page={currentPage} onChange={pagiHandler}/>
+            <div className="btn-center-wrap mount1">
+                <Fab onClick={onclickMoreBtn} variant="extended" className={button} aria-label="Add">
+                    <img src={downArrow} className="downArrow" alt="downArrow"/>
+                    <p>{ isVisible ? "이전 게시물" : "이전 게시물 없음"}</p>
+                </Fab>
+            </div>           
+
         </>
     )
 }
 
-export default List;
+const mapStateToProps = ({posts}) => ({
+    allPost : posts.post,
+    postTotal : posts.postTotal
+})
+
+export default connect(mapStateToProps)(List);

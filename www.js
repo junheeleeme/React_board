@@ -13,7 +13,7 @@ const port = process.env.PORT;
 
 app.use('/', router);
 app.use('/list', router);
-app.get('/post/list', board); //게시글 목록 요청
+// app.get('/post/list', board); //게시글 목록 요청
 
 app.get('/post/list', board); //게시글 목록 요청
 app.post('/post', board); //게시글 조회

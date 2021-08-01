@@ -89,7 +89,7 @@ const Edit = ({listUpdate, post}) => {
 
     return(
         <>
-            <form action="/" id="edit-form" className="mount">
+            <form action="/" id="edit-form" className="mount2">
                 
                 <div className="edit-title-wrap">
                     <TextField inputRef={titleInput} onChange={oncTitle} id="outlined-full-width" className="title-input" label="제목" 

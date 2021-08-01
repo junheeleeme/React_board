@@ -22,16 +22,34 @@ a{
 
 /* --------------- Common --------------- */
 
-.mount{
-    animation: 0.5s ease-in-out loadEffect;
-}
+.mount1{ animation: 0.7s ease-in-out loadEffect1; }
 
-@keyframes loadEffect {
-    from{
+@keyframes loadEffect1 {
+    0%{
         opacity: 0;
     }
-    to{
+    100%{
         opacity: 1;
+    }
+}
+
+
+.mount2{
+    animation: 0.5s ease-in-out loadEffect2;
+}
+
+@keyframes loadEffect2 {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    50%{
+        opacity: 0.5;
+        transform: translateX(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
     }
 }
 
@@ -104,12 +122,12 @@ a{
     position: relative;
     max-width: 1080px;
     min-height: calc(100vh - 120px);
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 @media screen and (max-width: 1080px) {
     .main{
-        padding: 10px 10px;
+        padding: 20px 5px;
     }
 }
 
@@ -208,10 +226,11 @@ a{
 /* ---------- List ---------- */
 
 .post-list{
-    display: block;
-    min-height: calc(100vh - 280px);
-    width: 100%;
     list-style: none;
+    display: block;
+    /* min-height: calc(100vh - 280px); */
+    width: 100%;
+    margin-bottom: 20px;
     padding-left: 0;
 }
 
@@ -263,6 +282,17 @@ a{
     margin: 0 auto;
 }
 
+.downArrow{
+    width: 33px;
+    height: 33px;
+}
+
+.btn-center-wrap{
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
+
 @media screen and (max-width: 767px) {
     .post-list>li>a>span{     
         font-size: 15px;
@@ -285,16 +315,16 @@ a{
     }
     .list-nic{ 
         position: absolute;
-        top: 6px; right: 0;
+        top: 6px; right: 10px;
         font-size: 12px !important;
-        text-align: center;
+        text-align: right;
         width: 25%;
     }
     .list-date{
         position: absolute;
-        bottom: 6px; right: 0;
+        bottom: 6px; right: 10px;
         font-size: 12px !important;
-        text-align: center;
+        text-align: right;
         width: 25%;
     }
     .MuiPagination-root>ul{

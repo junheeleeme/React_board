@@ -1,6 +1,6 @@
 // types.js -> reducer.js -> rootReducer.js
 
-import { TOGGLE_LOADER, TOGGLE_MOUNT } from "./types";
+import { TOGGLE_LOADER, } from "./types";
 
 const initialState = {
     isLoader : true,

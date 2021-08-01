@@ -9,12 +9,11 @@ import UserCheck from "./board/UserCheck";
 import Intro from "./Intro";
 import Topmenu from "./Topmenu";
 import { makeStyles } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
 import Fab from '@material-ui/core/Fab';
 import boardImg from '../images/boardImg.png';
 import axios from "axios";
 import { connect } from 'react-redux';
-import { toggleLoader, toggleMount } from '../redux/index';
+import { toggleLoader, setPost } from '../redux/index';
 
 
 const btnStyle = makeStyles({ //Material-UI 
@@ -25,16 +24,14 @@ const btnStyle = makeStyles({ //Material-UI
         height : 50,
         fontSize : 16,
         "&:hover" : {
-            background : "#3d5afe"
+            background : "#5075c7"
         }
     }
 });
 
-const Main = (({isloader, toggleLoader}) => {
+const Main = (({isloader, toggleLoader, setPost}) => {
 
     const { button } = btnStyle();
-    const [post, setPost] = useState([]);
-    const [postCnt, setPostCnt] = useState(0);
 
     useEffect(()=>{
 
@@ -48,34 +45,29 @@ const Main = (({isloader, toggleLoader}) => {
                     "              |__/                  ");
 
         axios.get('/post/list')
-            .then((res) => {            
-                setPost(res.data[0]);           //post[0] : 포스트
-                setPostCnt(res.data[1].count);  //post[1] : 전체 포스팅 개수
-                
-                toggleLoader(false);
-                
-
+            .then((res) => { //res.post[0] : 포스트, res.post[1] : 전체 포스팅 수
+                setPost(res.data[0], res.data[1]); //모든 포스팅 리덕스에 저장
+                toggleLoader(false);  //로딩 종료
             }).catch((err) => {
                 console.log(err);
             });
 
     }, []);
 
+
     const listUpdate = () =>{
         toggleLoader(true);
-        console.log("Second Rendering");
+        console.log("Rerender");
         axios.get('/post/list')
-            .then((res) => {            //post[0] : 포스트
-                setPost(res.data[0]);   //post[1] : 전체 포스팅 개수
-                setPostCnt(res.data[1].count);
-                toggleLoader(false);
+            .then((res) => {  //res.post[0] : 포스트, res.post[1] : 전체 포스팅 수
+                setPost(res.data[0], res.data[1]); //모든 포스팅 리덕스에 저장
+                toggleLoader(false);  //로딩 종료
             }).catch((err) => {
                 console.log(err);
                 toggleLoader(true);
             });
     }
 
-    
     if(isloader){ //로딩중
         return(
             <>
@@ -85,12 +77,12 @@ const Main = (({isloader, toggleLoader}) => {
     }else{      //로딩완료
         return(
             <>
-            <article className="main" >
+            <article className="main">
                 
                 <Route path="/" exact={true} component={Intro}/>
 
                 <Route path="/" exact>
-                    <Link to="/list/1" className="start-Btn">
+                    <Link to="/list" className="start-Btn mount1">
                         <Fab variant="extended" className={button} aria-label="Add" >
                             <img className="start-btnImg" src={boardImg} alt="Board-Img" />게시판으로 이동
                         </Fab>
@@ -110,8 +102,8 @@ const Main = (({isloader, toggleLoader}) => {
                 {/* Switch-Route -> List / Write / Post / Edit */}
 
                 <Switch>
-                    <Route path="/list/:no" exact={false}>
-                        <List post={post} postCnt={postCnt}/> 
+                    <Route path="/list" exact={false}>
+                        <List/> 
                     </Route>
                     <Route path="/post/write" exact={true}> 
                         <Write listUpdate={listUpdate}/>
@@ -123,10 +115,10 @@ const Main = (({isloader, toggleLoader}) => {
                         <UserCheck action={'delete'} listUpdate={listUpdate} /> 
                     </Route>
                     <Route path="/post/update" exact={false}>
-                        <Edit listUpdate={listUpdate} post={post}/> 
+                        {/* <Edit listUpdate={listUpdate} post={post}/>  */}
                     </Route>
                     <Route path="/post" exact={false}>
-                        <Post post={post}/>
+                        <Post/>
                     </Route>
                 </Switch>                        
 
@@ -138,8 +130,8 @@ const Main = (({isloader, toggleLoader}) => {
 
 const mapStateToProps = ({ loader }) => ({
     isloader : loader.isLoader
-})
+});
 
-const mapDispatchToProps = ({ toggleLoader })
+const mapDispatchToProps = ({ toggleLoader, setPost });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
