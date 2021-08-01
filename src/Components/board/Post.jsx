@@ -10,9 +10,6 @@ const Post = ({ currentPost, currentSetpost })=> {
     const { search } = useLocation();
     const { no } = queryString.parse(search);
 
-    console.log("search : " + search);
-    console.log("no : " + no);
-
     useEffect(()=>{
         currentSetpost(no);
     }, []);
