@@ -1,10 +1,15 @@
 // types.js -> actions.js -> index.js
 
-import { SET_POST, /* ADD_POST, DEL_POST, EDIT_POST,*/ CURRENT_SET_POST } from "./types";
+import { SET_POST, SET_PAGENUM, /* ADD_POST, DEL_POST, EDIT_POST,*/ CURRENT_SET_POST } from "./types";
 
 export const setPost = (post, {count}) => ({ //post : 모든 글, count: 모든 글수
     type : SET_POST,
     data : [post, count]
+});
+
+export const setPageNum = (num) => ({
+    type : SET_PAGENUM,
+    data : num
 });
 
 // export const addPost = (post) => ({

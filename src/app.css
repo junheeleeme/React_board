@@ -127,6 +127,12 @@ a{
 
 @media screen and (max-width: 1080px) {
     .main{
+        padding: 20px 10px 30px 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main{
         padding: 20px 5px;
     }
 }
@@ -282,9 +288,9 @@ a{
     margin: 0 auto;
 }
 
-.downArrow{
-    width: 33px;
-    height: 33px;
+.downIcon{
+    width: 25px;
+    height: 25px;
 }
 
 .btn-center-wrap{

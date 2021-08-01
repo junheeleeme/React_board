@@ -1,10 +1,11 @@
 // types.js -> reducer.js -> rootReducer.js
 
-import { SET_POST, /*ADD_POST, DEL_POST, EDIT_POST,*/ CURRENT_SET_POST } from "./types";
+import { SET_POST, SET_PAGENUM, /*ADD_POST, DEL_POST, EDIT_POST,*/ CURRENT_SET_POST } from "./types";
 
 const initialState = {
-    post : [],
-    postTotal : 0,
+    post : [],              //모든 글 정보
+    postTotal : 0,          //모든 글 수
+    pageNum : 1,            //페이지 수, 1페이지 = 글 12개
     currentPost : [{
         _id : '',
         title : '',
@@ -23,6 +24,12 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 post : action.data[0],
                 postTotal : action.data[1]
+            }
+        }
+        case SET_PAGENUM : {  //*
+            return {
+                ...state,
+                pageNum : action.data
             }
         }
         // case ADD_POST : {

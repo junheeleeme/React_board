@@ -35,7 +35,8 @@ const Main = (({isloader, toggleLoader, setPost}) => {
 
     useEffect(()=>{
 
-        console.log(" _   _  _        _                _ " + '\n' +
+        console.log("                                    " + '\n' +
+                    " _   _  _        _                _ " + '\n' +
                     "| | | |(_)      (_)              (_)" +'\n' +
                     "| |_| | _        _  _   _  _ __   _ " +'\n'+
                     "|  _  || |      | || | | || '_ \\ | |" +'\n' +
