@@ -1,5 +1,5 @@
 
-# Simple-React-Board  --> [Link](https://www.juni-official.com/simple-react-board)
+# Simple-React-Board
 
 * 리액트 Webpack / babel 사용
 * React-Router-Dom을 사용해 SPA(Single Page Application)형태로 구현
